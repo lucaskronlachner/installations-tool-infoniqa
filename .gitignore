@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,react,node
-# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,react,node
+# Created by https://www.toptal.com/developers/gitignore/api/node,visualstudiocode,react
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,visualstudiocode,react
 
 ### Node ###
 # Logs
@@ -176,4 +176,4 @@ sketch
 
 # Support for Project snippet scope
 
-# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,react,node
+# End of https://www.toptal.com/developers/gitignore/api/node,visualstudiocode,react
