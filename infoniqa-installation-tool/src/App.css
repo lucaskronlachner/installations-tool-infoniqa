@@ -1,3 +1,10 @@
+:root {
+    --snow-white: #FFFAFA;
+    --cornflower-blue: #8390FA;
+    --oxford-blue: #0D1431;
+    --red-orange: #FF4C0C;
+}
+
 .App {
   text-align: center;
 }
