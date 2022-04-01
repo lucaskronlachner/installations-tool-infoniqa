@@ -1,0 +1,11 @@
+.header_A{
+    background-color: var(--cornflower-blue);
+    margin: 5rem;
+    justify-content: center;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
