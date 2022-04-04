@@ -3,10 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Checkbox from './components/Checkbox/CheckboxComp';
 import reportWebVitals from './reportWebVitals';
+import Button from './components/Button/ButtonComp';
 
 ReactDOM.render(
   <React.StrictMode>
     <Checkbox/>
+    <Button 
+    onClick={() =>{console.log("You Clicked on Me!")}}
+    type="button"
+    buttonStyle="btn--primary--solid"
+    buttonSize="btn--large"
+    >Button Text</Button>
   </React.StrictMode>,
   document.getElementById('root')
 );
