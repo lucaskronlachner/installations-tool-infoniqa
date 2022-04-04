@@ -12,16 +12,4 @@
     align-items: center;
 }
 
-.checkBoxButton{
-    height: 3em;
-    width: 3em;
-    border-radius: 30%;
-    border-color: var(--cornflower-blue);
-    border-width: 5px;
-    border-style: solid;
-}
 
-.checkBoxButton:hover{
-    border-width: 3px;
-    opacity: 0.8;
-}
