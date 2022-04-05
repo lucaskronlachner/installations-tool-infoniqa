@@ -1,0 +1,28 @@
+:root {
+    --primary: #132059;
+    --warning: #ffd028;
+    --danger: #FF4C0C;
+    --success: #8390FA;
+    --white: #FFFAFA;;
+    --dark: #181717;
+}
+
+.inputField{
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border-color: var(--primary);
+    color: var(--primary);
+    font-weight: bold;
+
+}
+.inputField:hover{
+    background-color: var(--white);
+}
+
+.txtInput_large {
+    height: 30px;
+    width: 100px;
+}
+
+
