@@ -8,11 +8,11 @@ import Button from './components/Button/ButtonComp';
 ReactDOM.render(
   <React.StrictMode>
     <Checkbox/>
-    <Button 
-    onClick={() =>{console.log("You Clicked on Me!")}}
+
+    <Button onClick={() =>{console.log("You Clicked on Me!")}}
     type="button"
-    buttonStyle="btn--primary--solid"
-    buttonSize="btn--large"
+    buttonStyle="btn--danger--solid"
+    buttonSize="btn--medium"
     >Button Text</Button>
   </React.StrictMode>,
   document.getElementById('root')
