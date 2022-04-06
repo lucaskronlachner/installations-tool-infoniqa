@@ -5,6 +5,7 @@ import Checkbox from './components/Checkbox/CheckboxComp';
 import reportWebVitals from './reportWebVitals';
 import Button from './components/Button/ButtonComp';
 import TextInputField from './components/Text_Input/TextInputComp';
+import SwitchComp from './components/SwitchComp/SwitchComp';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,6 +16,7 @@ ReactDOM.render(
     buttonStyle="btn--default--solid"
     buttonSize="btn--medium">Button Text</Button>
     <TextInputField size="txtInput_large"></TextInputField>
+    <SwitchComp isOn={true}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
