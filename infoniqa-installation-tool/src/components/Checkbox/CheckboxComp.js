@@ -15,15 +15,15 @@ class CheckboxList extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            checkedList: props.checkList,
-            nameList: props.nameList,
+            _checkedList: props.checkList,
+            _nameList: props.nameList,
         }
     }
 
     render(){
         return(
             <ul className='checkListContainer'>
-            {this.state.checkedList.map((item, index) => (<CheckButton key={index} keyVar={index} check={item} name={this.state.nameList[index]} />))}
+            {this.state._checkedList.map((item, index) => (<CheckButton key={index} keyVar={index} check={item} name={this.state._nameList[index]} />))}
             </ul>
         )
     }
@@ -43,8 +43,8 @@ class CheckButton extends React.Component{
 
     handleClick = () => {
         this._IsChecked = this._IsChecked !== true
-       var checkbox = document.getElementById(`Box${this._Key}`)
-       checkbox.checked = this._IsChecked
+       var _checkbox = document.getElementById(`Box${this._Key}`)
+       _checkbox.checked = this._IsChecked
     }
     
     render(){
