@@ -10,7 +10,6 @@ import SwitchComp from './components/SwitchComp/SwitchComp';
 ReactDOM.render(
   <React.StrictMode>
     <Checkbox/>
-
     <Button onClick={() =>{console.log("You Clicked on Me!")}}
     type="button"
     buttonStyle="btn--default--solid"
