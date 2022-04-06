@@ -36,17 +36,18 @@
     display: flex;
     width: 2rem;
     height: 2rem;
-    transform: rotate(45deg);
     border-width: 5px;
     border-radius:15%;
+    transform: rotate(45deg);
     border-color: var(--cornflower-blue);
     border-style: solid;
+    transition: transform .2s ease-in-out;
 }
 
 .boxClass:hover{
     background-color: #ccc;
+    transform: rotate(125deg);
 }
-
 .container input:checked ~ .boxClass .boxClass:hover{
     background-color: var(--cornflower-blue);
 }
@@ -55,20 +56,27 @@
     background-color: var(--cornflower-blue);
 }
 
-.boxClass:after{
-    content: "";
-    top: 0.1em;
-    left: 0.2em;
-    opacity: 0;
-    border: 3px white;
-    position: absolute;
-    transform: rotate(45deg);
-    height: 8px;
-    width: 3.58px;
-}
 
 .container input:checked ~ .boxClass:after{
     opacity: 100;
+    border-left: 5px var(--snow-white) solid;
+    border-right: 5px var(--snow-white) solid;
+    outline: solid transparent 1px;
+    height: 10px;
+    width: 20px;
+}
+
+.boxClass:after{
+    opacity: 0;
+    top: 2.5px;
+    left: 8px;
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 10px;
+    border-bottom: 5px var(--snow-white) solid;
+    border-right: 5px var(--snow-white) solid;
+    outline: solid transparent 1px;
 }
 
 
