@@ -1,13 +1,12 @@
+import { style } from "@mui/system";
 import React from "react";
 import "./ButtonStyle.css";
 
 const STYLES = [
     "btn--primary--solid",
-    "btn--warning--solid",
     "btn--danger--solid",
     "btn--success--solid",
     "btn--primary--outline",
-    "btn--warning--outline",
     "btn--danger--outline",
     "btn--success--outline",
 ]
@@ -17,10 +16,8 @@ const SIZES = [
     "btn--large",
 ]
 
-export const Button = ({
-    children, 
-    type, 
-    onClick, 
+const Button = ({
+    children,
     buttonStyle, 
     buttonSize
 }) => {
@@ -29,11 +26,14 @@ export const Button = ({
 
     const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
 
+    const handleClick = (event) => {
+        console.log('you clicked me!');
+        
+    }
+
     return (
         <div className="container">
-        <button className={`btn ${checkButtonStyle} ${checkButtonSize}`} onClick={onClick} type={type}>
-            {children}
-        </button>
+            <button className={`btn ${checkButtonStyle} ${checkButtonSize}`} onClick={handleClick}>{children}</button>
         </div>
     )
 }
