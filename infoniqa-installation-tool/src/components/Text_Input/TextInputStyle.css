@@ -1,24 +1,16 @@
-:root {
-    --primary: #132059;
-    --warning: #ffd028;
-    --danger: #FF4C0C;
-    --success: #8390FA;
-    --white: #FFFAFA;;
-    --dark: #181717;
-}
+@import url("../../App.css");
 
 .inputField{
     border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    border-color: var(--primary);
-    color: var(--primary);
+    border-width: 10px;
+    border-color: var(--oxford-blue);
+    color: var(--oxford-blue);
     font-weight: bold;
-
 }
 .inputField:hover{
-    background-color: var(--white);
+    background-color: var(--snow-white);
 }
+
 
 .txtInput_large {
     height: 30px;

@@ -10,11 +10,12 @@ ReactDOM.render(
   <React.StrictMode>
     <Checkbox/>
 
-    <Button onClick={() =>{console.log("You Clicked on Me!")}}
+    <Button
     type="button"
     buttonStyle="btn--default--solid"
-    buttonSize="btn--medium">Button Text</Button>
-    <TextInputField size="txtInput_large"></TextInputField>
+    buttonSize="btn--medium">Press Me :)</Button>
+
+    <TextInputField></TextInputField>
   </React.StrictMode>,
   document.getElementById('root')
 );
