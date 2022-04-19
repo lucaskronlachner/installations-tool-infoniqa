@@ -12,8 +12,8 @@ import RadioComp from './components/RadioComp/RadioComp';
 ReactDOM.render(
   <React.StrictMode>
     <Checkbox/>
-
-    <Button
+    <Button onClick={() =>{console.log("You Clicked on Me!")}}
+     main
     type="button"
     buttonStyle="btn--default--solid"
     buttonSize="btn--medium">Press Me :)</Button>

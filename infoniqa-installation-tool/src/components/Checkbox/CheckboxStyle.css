@@ -1,16 +1,23 @@
 @import url("../../App.css");
 
 .container{
-    display: flex;
-    flex-grow: initial;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10rem;
+    height: 5em;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    margin: 3px;
+    display: inline;
+}
+
+.checkListContainer{
+    display: flex;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    flex-direction: column;
+    flex-grow: 2;
+    justify-content: center;
+    align-content: center;
 }
 
 
@@ -30,12 +37,11 @@
 
 
 .boxClass{
-    left: 37rem;
-    top: 21.28em;
-    position: absolute;
+    left: -0.8em;
+    position: relative;
     display: flex;
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
     border-width: 5px;
     border-radius:15%;
     transform: rotate(45deg);
@@ -46,44 +52,40 @@
 
 .boxClass:hover{
     background-color: #ccc;
-    transform: rotate(125deg);
-}
-.container input:checked ~ .boxClass .boxClass:hover{
-    background-color: var(--cornflower-blue);
+    transform: rotate(135deg);
 }
 
 .container input:checked ~ .boxClass{
     background-color: var(--cornflower-blue);
 }
 
+.boxClass:hover:after{
+    transform: rotate(-90deg);
+    border-color: var(--red-orange);
+}
 
 .container input:checked ~ .boxClass:after{
     opacity: 100;
-    border-left: 5px var(--snow-white) solid;
-    border-right: 5px var(--snow-white) solid;
-    outline: solid transparent 1px;
-    height: 10px;
-    width: 20px;
 }
 
 .boxClass:after{
     opacity: 0;
     top: 2.5px;
-    left: 8px;
+    left: 7px;
     position: absolute;
     content: "";
-    height: 20px;
-    width: 10px;
-    border-bottom: 5px var(--snow-white) solid;
-    border-right: 5px var(--snow-white) solid;
+    height: 15px;
+    width: 6px;
+    border-bottom: 3px var(--snow-white) solid;
+    border-right: 3px var(--snow-white) solid;
     outline: solid transparent 1px;
+    transition: transform .2s ease-in-out;
 }
 
 
 .DescriptionText{
+    top: -1.87em;
     margin-left: 2rem;
-    left: 39rem;
-    top: 9.948em;
-    position: absolute;
+    position: relative;
     color: var(--oxford-blue);
 }
