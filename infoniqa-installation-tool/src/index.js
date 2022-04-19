@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import Button from './components/Button/ButtonComp';
 import TextInputField from './components/Text_Input/TextInputComp';
 import SwitchComp from './components/SwitchComp/SwitchComp';
+import RadioComp from './components/RadioComp/RadioComp';
 
 
 ReactDOM.render(
@@ -19,6 +20,7 @@ ReactDOM.render(
 
     <TextInputField></TextInputField>
     <SwitchComp isOn={true}/>
+    <RadioComp></RadioComp>
   </React.StrictMode>,
 
   document.getElementById('root')

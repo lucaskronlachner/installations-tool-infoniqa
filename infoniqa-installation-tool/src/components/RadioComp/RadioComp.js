@@ -1,54 +1,41 @@
-import React from 'react';
-import "./RadioStyle.css";
-
-const radioButtonComp = () => {
-    return(
-        <div className='container'>
-            <RadioButton name="TheTest"></RadioButton>
-        </div>
-    )
-}
-
-class RadioButton extends React.Component{
-
-    constructor(props){
-        super(props)
-        this.state = {
-            name: props.name,
-            check: false
-        };
-    }
-
-    handleClick = () => {
-        this.setState({check: (this.state.check !== true)})
-    }
-
-    render(){
-        return(
-            <div className='container'>
-                <input type="radio" defaultChecked={this.state.check}/>
-                <span className='radioClass' onClick={this.handleClick}/>
-                <h1 className='Description'>{this.state.name}</h1>
-            </div>
-        )
-    }
-
-}
-
-export default radioButtonComp;
+import * as React from 'react';
+import "../../App.css";
 
 
+const RadioComp = () => {
+  const [favorite, setFavorite] = React.useState('two');
 
+  const handleOneChange = () => {
+    setFavorite('one');
+  };
 
+  const handleTwoChange = () => {
+    setFavorite('two');
+  };
 
+  return (
+    <div>
+      <RadioButton
+        label="One"
+        value={favorite === 'one'}
+        onChange={handleOneChange}
+      />
+      <RadioButton
+        label="Two"
+        value={favorite === 'two'}
+        onChange={handleTwoChange}
+      />
+    </div>
+  );
+};
 
+const RadioButton = ({ label, value, onChange }) => {
+  return (
+    <label>
+      <input type="radio" checked={value} onChange={onChange} />
+      {label}
+    </label>
+  );
+};
 
-
-
-
-
-
-
-
-
-
+export default RadioComp;
