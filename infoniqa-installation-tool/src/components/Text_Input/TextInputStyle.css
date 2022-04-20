@@ -2,7 +2,8 @@
 
 .inputField{
     border-radius: 5px;
-    border-width: 10px;
+    border-width: 1px;
+    height: 30px;
     border-color: var(--oxford-blue);
     color: var(--oxford-blue);
     font-weight: bold;

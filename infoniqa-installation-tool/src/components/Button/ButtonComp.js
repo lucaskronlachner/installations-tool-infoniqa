@@ -1,4 +1,3 @@
-import { style } from "@mui/system";
 import React from "react";
 import "./ButtonStyle.css";
 
@@ -28,7 +27,6 @@ const Button = ({
 
     const handleClick = (event) => {
         console.log('you clicked me!');
-        
     }
 
     return (
