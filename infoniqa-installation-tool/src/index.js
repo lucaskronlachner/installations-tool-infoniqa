@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import Button from './components/Button/ButtonComp';
 import TextInputField from './components/Text_Input/TextInputComp';
 import SwitchComp from './components/SwitchComp/SwitchComp';
-import DatePickerComp from './components/Date_Picker/DatePickerComp';
+import RadioComp from './components/RadioComp/RadioComp';
 
 
 ReactDOM.render(
@@ -19,8 +19,8 @@ ReactDOM.render(
     buttonSize="btn--medium">Press Me :)</Button>
 
     <TextInputField></TextInputField>
+    <RadioComp/>
     <SwitchComp isOn={true}/>
-    <DatePickerComp/>
     <Checkbox _ident={'2'}/>
   </React.StrictMode>,
 

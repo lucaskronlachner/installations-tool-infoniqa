@@ -1,54 +1,66 @@
-import React from 'react';
-import "./RadioStyle.css";
+import * as React from 'react';
+import './RadioStyle.css';
+import "../../App.css";
 
-const radioButtonComp = () => {
+
+ 
+class RadioComp extends React.Component{
+  state = {
+    value : "second",
+    value2 : "third"
+  }
+
+  onChange = e => {
+    this.setState({[e.target.name] : e.target.value})
+  }
+
+  render(){
+    const {value, value2} = this.state;
     return(
-        <div className='container'>
-            <RadioButton name="TheTest"></RadioButton>
+      <form>
+        <div className="body">
+        <label>
+          First
+          <input type="radio"
+            value="first"
+            name="value"
+            checked={value === "first"}
+            onChange={this.onChange}
+          />
+        </label>
+        <label>
+          Second
+          <input type="radio"
+            value="second"
+            name="value"
+            checked={value === "second"}
+            onChange={this.onChange}
+          />
+        </label>
+        <br/>
+        <br/>
+        <label>
+          Third
+          <input type="radio"
+            value="third"
+            name="value2"
+            checked={value2 === "third"}
+            onChange={this.onChange}
+          />
+        </label>
+        <label>
+          Fourth
+          <input type="radio"
+            value="fourth"
+            name="value2"
+            checked={value2 === "fourth"}
+            onChange={this.onChange}
+          />
+        </label>
         </div>
+      </form>
+
     )
+  }
 }
-
-class RadioButton extends React.Component{
-
-    constructor(props){
-        super(props)
-        this.state = {
-            name: props.name,
-            check: false
-        };
-    }
-
-    handleClick = () => {
-        this.setState({check: (this.state.check !== true)})
-    }
-
-    render(){
-        return(
-            <div className='container'>
-                <input type="radio" defaultChecked={this.state.check}/>
-                <span className='radioClass' onClick={this.handleClick}/>
-                <h1 className='Description'>{this.state.name}</h1>
-            </div>
-        )
-    }
-
-}
-
-export default radioButtonComp;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default RadioComp;
