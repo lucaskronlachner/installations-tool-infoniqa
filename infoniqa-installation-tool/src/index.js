@@ -11,7 +11,7 @@ import RadioComp from './components/RadioComp/RadioComp';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Checkbox/>
+    <Checkbox _ident={'1'}/>
     <Button onClick={() =>{console.log("You Clicked on Me!")}}
      main
     type="button"
@@ -19,8 +19,9 @@ ReactDOM.render(
     buttonSize="btn--medium">Press Me :)</Button>
 
     <TextInputField></TextInputField>
-    <SwitchComp/>
     <RadioComp/>
+    <SwitchComp isOn={true}/>
+    <Checkbox _ident={'2'}/>
   </React.StrictMode>,
 
   document.getElementById('root')
