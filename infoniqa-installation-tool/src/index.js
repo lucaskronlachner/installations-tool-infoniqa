@@ -19,8 +19,8 @@ ReactDOM.render(
     buttonSize="btn--medium">Press Me :)</Button>
 
     <TextInputField></TextInputField>
-    <SwitchComp isOn={true}/>
-    <RadioComp></RadioComp>
+    <SwitchComp/>
+    <RadioComp/>
   </React.StrictMode>,
 
   document.getElementById('root')

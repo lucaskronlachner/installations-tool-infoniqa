@@ -1,41 +1,66 @@
 import * as React from 'react';
+import './RadioStyle.css';
 import "../../App.css";
 
 
-const RadioComp = () => {
-  const [favorite, setFavorite] = React.useState('two');
+ 
+class RadioComp extends React.Component{
+  state = {
+    value : "second",
+    value2 : "third"
+  }
 
-  const handleOneChange = () => {
-    setFavorite('one');
-  };
+  onChange = e => {
+    this.setState({[e.target.name] : e.target.value})
+  }
 
-  const handleTwoChange = () => {
-    setFavorite('two');
-  };
+  render(){
+    const {value, value2} = this.state;
+    return(
+      <form>
+        <div className="body">
+        <label>
+          First
+          <input type="radio"
+            value="first"
+            name="value"
+            checked={value === "first"}
+            onChange={this.onChange}
+          />
+        </label>
+        <label>
+          Second
+          <input type="radio"
+            value="second"
+            name="value"
+            checked={value === "second"}
+            onChange={this.onChange}
+          />
+        </label>
+        <br/>
+        <br/>
+        <label>
+          Third
+          <input type="radio"
+            value="third"
+            name="value2"
+            checked={value2 === "third"}
+            onChange={this.onChange}
+          />
+        </label>
+        <label>
+          Fourth
+          <input type="radio"
+            value="fourth"
+            name="value2"
+            checked={value2 === "fourth"}
+            onChange={this.onChange}
+          />
+        </label>
+        </div>
+      </form>
 
-  return (
-    <div>
-      <RadioButton
-        label="One"
-        value={favorite === 'one'}
-        onChange={handleOneChange}
-      />
-      <RadioButton
-        label="Two"
-        value={favorite === 'two'}
-        onChange={handleTwoChange}
-      />
-    </div>
-  );
-};
-
-const RadioButton = ({ label, value, onChange }) => {
-  return (
-    <label>
-      <input type="radio" checked={value} onChange={onChange} />
-      {label}
-    </label>
-  );
-};
-
+    )
+  }
+}
 export default RadioComp;
