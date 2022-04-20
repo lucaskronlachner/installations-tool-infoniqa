@@ -1,0 +1,8 @@
+@import url("../../App.css");
+
+.dayComp{
+    border-radius: 50%;
+    background-color: var(--cornflower-blue);
+    margin: 1.5rem;
+}
+

@@ -6,11 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import Button from './components/Button/ButtonComp';
 import TextInputField from './components/Text_Input/TextInputComp';
 import SwitchComp from './components/SwitchComp/SwitchComp';
+import DatePickerComp from './components/Date_Picker/DatePickerComp';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <Checkbox/>
+    <Checkbox _ident={'1'}/>
     <Button onClick={() =>{console.log("You Clicked on Me!")}}
      main
     type="button"
@@ -19,6 +20,8 @@ ReactDOM.render(
 
     <TextInputField></TextInputField>
     <SwitchComp isOn={true}/>
+    <DatePickerComp/>
+    <Checkbox _ident={'2'}/>
   </React.StrictMode>,
 
   document.getElementById('root')
