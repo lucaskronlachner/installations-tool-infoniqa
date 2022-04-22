@@ -5,7 +5,7 @@ export default function CheckboxComp(props) {
 
     return (
         <div className='container'>
-            <CheckboxList ident={props._ident} checkList={[true, false, false]} nameList={["Herbert", "Rahel", "England"]} />
+            <CheckboxList ident={props._ident} checkList={[true, false, false]} nameList={props.items} />
         </div>
     )
 }

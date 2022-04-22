@@ -7,11 +7,12 @@ import Button from './components/Button/ButtonComp';
 import TextInputField from './components/Text_Input/TextInputComp';
 import SwitchComp from './components/SwitchComp/SwitchComp';
 import RadioComp from './components/RadioComp/RadioComp';
+import DatePickerComp from './components/DatePicker/DatePickerComp';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <Checkbox _ident={'1'}/>
+    <Checkbox _ident={'1'} items={["Herbert", "Rahel", "Fort"]}/>
     <Button onClick={() =>{console.log("You Clicked on Me!")}}
      main
     type="button"
@@ -21,7 +22,8 @@ ReactDOM.render(
     <TextInputField></TextInputField>
     <RadioComp/>
     <SwitchComp isOn={true}/>
-    <Checkbox _ident={'2'}/>
+    <Checkbox _ident={'2'} items={["Herbert", "Rahel", "Fortnite"]}/>
+    <DatePickerComp/>
   </React.StrictMode>,
 
   document.getElementById('root')
