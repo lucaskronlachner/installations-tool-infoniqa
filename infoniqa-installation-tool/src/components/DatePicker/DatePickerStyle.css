@@ -1,0 +1,31 @@
+@import url("../../App.css");
+
+.dayComp{
+    border-radius: 50%;
+    margin: 1em;
+    display: inline;
+    width: fit-content;
+    height: fit-content;
+    padding: 0.5em;
+    font-weight: bold;
+    border-width: 0px;
+    border-color: var(--cornflower-blue);
+    border-style: solid;
+    transition: border-width 0.2s;
+}
+
+.dayComp:hover{
+    border-width: 3.2px;
+    margin: 0.95em;
+    transition: border-width 0.2s;
+}
+
+.container{
+    height: 5em;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 3px;
+    display: inline;
+}
