@@ -9,9 +9,7 @@ const SwitchComp = (props) => {
     return (
       <>
       <div className="container">
-        <input
-            checked={isOn}
-            onChange={() => { setIsOn(!isOn) }}
+        <input checked={isOn} onChange={() => { setIsOn(!isOn) }}
           className="react-switch-checkbox"
           id={`react-switch-new`}
           type="checkbox"
