@@ -9,8 +9,8 @@
 
 .btn:hover {
     transform: translateY(-5px);
+    background-color: var(--cornflower-blue);
 }
-
 /* Button Colors and Styles*/
 .btn--primary--solid {
     background-color: var(--oxford-blue);
@@ -30,6 +30,10 @@
     color: var(--snow-white);
     border: none;
 }
+
+
+
+
 
 .btn--primary--outline{
     background-color: transparent;

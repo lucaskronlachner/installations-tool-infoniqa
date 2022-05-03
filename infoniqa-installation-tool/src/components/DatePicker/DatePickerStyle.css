@@ -1,0 +1,48 @@
+@import url("../../App.css");
+
+.dayComp{
+    border-radius: 100%;
+    background-color: var(--snow-white);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: inline-block;
+    padding: .5em;
+    font-weight: bold;
+    border-width: 0px;
+    border-color: var(--cornflower-blue);
+    border-style: solid;
+    transition: border-width 0.2s;
+}
+
+.dayComp:hover{
+    border-width: 3.2px;
+    margin-top: 0.95em;
+    margin-bottom: 0.95em;
+    transition: border-width 0.2s;
+}
+
+.container{
+    height: 5em;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 3px;
+    display: inline;
+}
+
+.breakLines{
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.month_Container{
+    display: flex;
+    width: max-content;
+    height: max-content;
+    border-radius: 5%;
+    border-style: solid;
+    border-width: 4px;
+    padding: 0.5em;
+    border-color: var(--cornflower-blue);
+}

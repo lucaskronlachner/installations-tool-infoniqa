@@ -27,7 +27,6 @@ const Button = ({
 
     const handleClick = (event) => {
         console.log('you clicked me!');
-        
     }
 
     return (
