@@ -16,31 +16,31 @@
 
 .dayComp:hover{
     border-width: 3.2px;
-    margin-top: 0.95em;
-    margin-bottom: 0.95em;
     transition: border-width 0.2s;
 }
 
-.container{
-    height: 5em;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    margin: 3px;
-    display: inline;
+.datepicker-container{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.datepicker-container div {
+    cursor: pointer;
 }
 
 .breakLines{
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
-
+.datetime-dates-list {
+    flex-basis: 100%;
+    display: inline-flex;
+    flex-wrap: wrap;
+}
 .month_Container{
-    display: flex;
-    width: max-content;
-    height: max-content;
-    border-radius: 5%;
+    border-radius: 25px;
     border-style: solid;
     border-width: 4px;
     padding: 0.5em;
