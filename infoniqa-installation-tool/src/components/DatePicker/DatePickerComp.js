@@ -5,7 +5,7 @@ import "../../App.css";
 
 const Date_PickerComp = () => {
     return(
-    <div className='container month_Container'>
+    <div className='month_Container'>
         <MonthComponent ident={"A"} DayList={[1,2,3,4,5,6,7,8,9,10,11]}/>
     </div>
     )
@@ -46,7 +46,7 @@ class DayComponent extends React.Component{
         this.counter += 1
         this.breakStatment = (this.counter % this.listLength) === 0 ? <br className='breakLines'></br> : null
         return(
-            <div className='container'>
+            <div className='datepicker-container'>
                 <div id={`${this.props.ident}DayComp`} className='dayComp' onClick={this.HandleClick}>
                     {
                     this.props.DayNumber
@@ -87,7 +87,7 @@ class MonthComponent extends React.Component{
         });
 
         return(
-            <div>
+            <div className='datetime-dates-list'>
                 {this.props.DayList.map((item, index) => (<DayComponent key={index + 0} counter={index} ident={`${this.props.ident}${index}`} DayNumber={item} listLength={5} setChecked={this.check} getChecked={this.getcheck}/>))}
             </div>
         )
