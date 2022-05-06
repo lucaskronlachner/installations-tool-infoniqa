@@ -22,7 +22,7 @@ ReactDOM.render(
     <RadioComp/>
     <SwitchComp isOn={true}/>
     <Checkbox _ident={'2'} items={["Herbert", "Rahel", "Fortnite"]}/>
-    <DatePickerComp/>
+    <DatePickerComp Year={2022} Month={3} ident={'1'}/>
   </React.StrictMode>,
 
   document.getElementById('root')

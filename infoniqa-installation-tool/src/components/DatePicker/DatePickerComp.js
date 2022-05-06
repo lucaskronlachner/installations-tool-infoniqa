@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './DatePickerStyle.css';
 import "../../App.css";
 
 
-const Date_PickerComp = () => {
+const Date_PickerComp = (props) => {
+    const [_currentYear, setcurrentYear] = useState(props.Year)
+    const [_currentMonth, setcurrentMonth] = useState(props.Month)
+    const [_ident] = useState(props.ident)
+
     return(
     <div className='month_Container'>
         <MonthComponent ident={"A"} DayList={[1,2,3,4,5,6,7,8,9,10,11]}/>
@@ -11,13 +15,23 @@ const Date_PickerComp = () => {
     )
 }
 
+const getDaysArray = (year, month) => {
+    const monthIndex = month - 1;
+    const date = new Date(year, monthIndex, 1);
+    const result = [];
+    while (date.getMonth() === monthIndex) {
+      result.push(date.getDate());
+      date.setDate(date.getDate() + 1);
+    }
+    return result;
+}
+
 class DayComponent extends React.Component{
 
     constructor(props){
         super(props)
         this._isSelected = props._isSelected;
-        this.counter = props.counter
-        this.listLength = props.listLength;
+        this.loaded = false
     }
     
     UpdateStyle = () => {
@@ -43,8 +57,9 @@ class DayComponent extends React.Component{
     }
 
     render(){
-        this.counter += 1
-        this.breakStatment = (this.counter % this.listLength) === 0 ? <br className='breakLines'></br> : null
+        let counter = this.props.counter
+        counter += 1
+        this.breakStatment = (counter % this.props.listLength) === 0 ? <br className='breakLines'></br> : null
         return(
             <div className='datepicker-container'>
                 <div id={`${this.props.ident}DayComp`} className='dayComp' onClick={this.HandleClick}>
@@ -93,6 +108,36 @@ class MonthComponent extends React.Component{
         )
     }
 
+}
+
+class YearNMonthCarusel extends React.Component{
+    constructor(props){
+        super(props)
+        this.setMonth = props.setCurMonth
+        this.setYear = props.setCurYear
+        this.Month = props.curMonth
+        this.Year = props.curYear
+    }
+
+    handleMonthClick = () =>{
+
+    }
+
+    changeYear = () => {
+        console.log(this.Year)
+        this.setYear(new Date(this.Year, this.Month))
+    }
+
+    render(){
+        return(
+            <div className=''>
+                <label onClick={this.handleMonthClick()}>{this.Month}</label>
+                <input id='yearInput' type='text' placeholder='yyyy' value={this.Year} onChange={(event) => {
+                    this.changeYear()
+                }}/>
+            </div>
+        )
+    }
 }
 
 

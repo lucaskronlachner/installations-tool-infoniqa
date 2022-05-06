@@ -47,12 +47,10 @@
     transform: rotate(45deg);
     border-color: var(--cornflower-blue);
     border-style: solid;
-    transition: transform .2s ease-in-out;
 }
 
 .boxClass:hover{
     background-color: #ccc;
-    transform: rotate(135deg);
 }
 
 .container input:checked ~ .boxClass{
@@ -60,7 +58,6 @@
 }
 
 .boxClass:hover:after{
-    transform: rotate(-90deg);
     border-color: var(--red-orange);
 }
 
@@ -79,7 +76,6 @@
     border-bottom: 3px var(--snow-white) solid;
     border-right: 3px var(--snow-white) solid;
     outline: solid transparent 1px;
-    transition: transform .2s ease-in-out;
 }
 
 
