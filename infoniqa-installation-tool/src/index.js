@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Checkbox from './components/Checkbox/CheckboxComp';
 import reportWebVitals from './reportWebVitals';
+import ColorPickerComp from './components/ColorPicker Component/ColorPickerComp';
+import DropDownComp from './components/DropDown Component/DropDownComp';
 import Button from './components/Button/ButtonComp';
 import TextInputField from './components/Text_Input/TextInputComp';
 import SwitchComp from './components/SwitchComp/SwitchComp';
@@ -13,12 +15,9 @@ import DatePickerComp from './components/DatePicker/DatePickerComp';
 ReactDOM.render(
   <React.StrictMode>
     <Checkbox _ident={'1'} items={["Herbert", "Rahel", "Fort"]}/>
-    <Button onClick={() =>{console.log("You Clicked on Me!")}}
-     main
-    type="button"
-    buttonStyle="btn--default--solid"
-    buttonSize="btn--medium">Press Me :)</Button>
-
+    <Button onClick={() =>{console.log("You Clicked on Me!")}} buttonStyle="btn--default--solid" buttonSize="btn--medium">Button</Button>
+    <ColorPickerComp pickerSize='150px'></ColorPickerComp>
+    <DropDownComp list={["moiga", "lol", "funny", "peepe", "yoo", "lasdjfölasjfd" ]}></DropDownComp>
     <TextInputField></TextInputField>
     <RadioComp/>
     <SwitchComp isOn={true}/>

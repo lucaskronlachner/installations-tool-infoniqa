@@ -9,18 +9,11 @@ const SwitchComp = (props) => {
     return (
       <>
       <div className="container">
-        <input checked={isOn} onChange={() => { setIsOn(!isOn) }}
-          className="react-switch-checkbox"
-          id={`react-switch-new`}
-          type="checkbox"
+        <input checked={isOn} onChange={() => { setIsOn(!isOn) }} className="react-switch-checkbox" id={`react-switch-new`} type="checkbox"
         />
 
 
-        <label
-        style={{background: isOn && 'var(--cornflower-blue)'}}
-          className="react-switch-label"
-          htmlFor={`react-switch-new`}
-        >
+        <label style={{background: isOn && 'var(--cornflower-blue)'}} className="react-switch-label" htmlFor={`react-switch-new`}>
           <span className={`react-switch-button`} />
         </label>
         </div>
