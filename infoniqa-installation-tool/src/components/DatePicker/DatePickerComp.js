@@ -10,9 +10,9 @@ const Date_PickerComp = (props) => {
 
     return(
     <div>
-       <div className='DatePicker_container yearNMonth_Container'>
+       <div className='yearNMonth_Container'>
                 <YearNMonthCarusel curYear={_currentYear} setCurYear={setcurrentYear} curMonth={_currentMonth} setCurMonth={setcurrentMonth}/>
-            <div className='DatePicker_container month_Container'>
+            <div className='month_Container'>
                 <MonthComponent ident={_ident} DayList={getDaysArray(_currentYear, _currentMonth)}/>
             </div>
         </div>
@@ -72,7 +72,7 @@ class DayComponent extends React.Component{
         counter += 1
         this.breakStatment = (counter % this.props.listLength) === 0 ? <br className='breakLines'></br> : null
         return(
-            <div className='Datepicker_Container'>
+            <div className='DatePicker_container'>
                 <div id={`${this.props.ident}DayComp`} className='dayComp' onClick={this.HandleClick}>
                     {
                     this.props.DayNumber

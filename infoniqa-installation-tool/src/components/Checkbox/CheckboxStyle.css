@@ -1,6 +1,6 @@
 @import url("../../App.css");
 
-.container{
+.container_Check{
     height: 5em;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -22,12 +22,12 @@
 
 
 .checkBoxButton{
-    width: 5em;
-    height: 5em;
+    width: 1em;
+    height: 1em;
     transform: rotate(45deg);
 }
 
-.container input {
+.container_Check input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
@@ -53,7 +53,7 @@
     background-color: #ccc;
 }
 
-.container input:checked ~ .boxClass{
+.container_Check input:checked ~ .boxClass{
     background-color: var(--cornflower-blue);
 }
 
@@ -61,7 +61,7 @@
     border-color: var(--red-orange);
 }
 
-.container input:checked ~ .boxClass:after{
+.container_Check input:checked ~ .boxClass:after{
     opacity: 100;
 }
 
@@ -80,7 +80,7 @@
 
 
 .DescriptionText{
-    top: -1.87em;
+    top: -1.83em;
     margin-left: 2rem;
     position: relative;
     color: var(--oxford-blue);

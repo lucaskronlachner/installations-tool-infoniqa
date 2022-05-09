@@ -4,7 +4,7 @@ import './CheckboxStyle.css';
 export default function CheckboxComp(props) {
 
     return (
-        <div className='container'>
+        <div className='container_Check'>
             <CheckboxList ident={props._ident} checkList={[true, false, false]} nameList={props.items} />
         </div>
     )
@@ -57,7 +57,7 @@ class CheckButton extends React.Component {
 
     render() {
         return (
-            <div className='container'>
+            <div className='container_Check'>
                 <input id={`${this.props.ident}Box${this._Key}`} type="checkbox" defaultChecked={this._IsChecked} />
                 <span className='boxClass' onClick={this.handleClick} />
                 <h1 className='DescriptionText'>{this.props.name}</h1>
