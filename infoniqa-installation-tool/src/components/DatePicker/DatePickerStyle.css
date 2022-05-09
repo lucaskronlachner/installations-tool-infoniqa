@@ -19,14 +19,15 @@
     color: var(--red-orange);
 }
 
-.datepicker-container{
+
+.DatePicker_container{
     width: 50px;
     height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.datepicker-container div {
+.DatePicker_container div {
     cursor: pointer;
 }
 
