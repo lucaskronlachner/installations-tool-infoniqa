@@ -5,9 +5,11 @@ class ColorPickerComp extends React.Component {
     constructor(props) {
         super(props)
         this.colorPickerCanvas = React.createRef()
+        this.pickerIndicator = React.createRef()
         this.pickerSize = props.pickerSize
     }
     componentDidMount() {
+        let dragging = false
         let pickerCanvas = this.colorPickerCanvas.current
         pickerCanvas.style.width = this.pickerSize
         pickerCanvas.style.height = this.pickerSize
@@ -23,7 +25,7 @@ class ColorPickerComp extends React.Component {
                 for (let y = -radius; y < radius; y++) {
                     let [r, phi] = xy2polar(x, y);
 
-                    if (r > radius + 2) {
+                    if (r > radius + 3) {
                         // skip all (x,y) coordinates that are outside of the circle
                         continue;
                     }
@@ -38,9 +40,9 @@ class ColorPickerComp extends React.Component {
                     let index = (adjustedX + adjustedY * rowLength) * pixelWidth;
 
                     let hue = deg;
-                    let saturation = 1.0;
+                    let saturation = r / radius;
                     let value = 1.0;
-
+                    
                     let [red, green, blue] = hsv2rgb(hue, saturation, value);
                     let alpha = 255;
 
@@ -91,14 +93,43 @@ class ColorPickerComp extends React.Component {
             // Change r,g,b values from [0,1] to [0,255]
             return [255 * r, 255 * g, 255 * b];
         }
-
-
+        pickerCanvas.onmousedown = (e) => {
+            setPickerColor(e.pageX, e.pageY, this.pickerIndicator.current)
+            dragging = true
+        }
+        pickerCanvas.onmousemove = (e) => {
+            if(dragging)
+                setPickerColor(e.pageX, e.pageY, this.pickerIndicator.current)
+        }
+        document.onmouseup = (e) => {
+            dragging = false
+        }
+        function setPickerColor(pageX, pageY, pickerElement) {
+            let bounds = pickerCanvas.getBoundingClientRect()
+            let boundsPicker = pickerElement.getBoundingClientRect()
+            let x = pageX - window.scrollX - bounds.left
+            let y = pageY - window.scrollY - bounds.top
+            let p = ctx.getImageData(x * 2, y * 2, 1, 1).data;
+            pickerElement.style.left = `${x - boundsPicker.width/2}px`
+            pickerElement.style.top = `${y - boundsPicker.height/2}px`
+            pickerElement.style.backgroundColor = `rgba(${p[0]},${p[1]},${p[2]},${p[3]})`
+        }
     }
-
     render() {
         return (
-            <div>
-                <canvas ref={this.colorPickerCanvas} id="colorCanvas"></canvas>
+            <div className='color-picker'>
+                <div className='color-canvas-relative-container'>
+                    <div className='color-canvas-background'>
+                        <div className='color-canvas-container hidden'>
+                            <div ref={this.pickerIndicator} className='color-picker-indicator'></div>
+                            <canvas ref={this.colorPickerCanvas} id="colorCanvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div className='color-picker-button'>
+                    <p className='color-picker-title'>color1</p>
+                    <div className='selected-color'></div>
+                </div>
             </div>
         )
     }

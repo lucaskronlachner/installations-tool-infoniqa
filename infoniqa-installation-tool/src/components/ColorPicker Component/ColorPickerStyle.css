@@ -2,3 +2,52 @@
     border-radius: 50%;
     border: 3px var(--oxford-blue) solid;
 }
+.color-picker {
+    width: 300px;
+}
+.color-picker-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.color-picker-button .selected-color {
+    width: 60px;
+    height: 25px;
+    background-color: aqua;
+    margin-left: 15px;
+    border-radius: 10px;
+}
+.color-canvas-relative-container {
+    position: relative;
+}
+.color-canvas-background {
+    box-sizing: border-box;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    padding: 30px 15px;
+    background-color: white;
+    border-radius: 25px;
+    -webkit-box-shadow: 0px 6px 30px -15px #13205940; 
+    box-shadow: 0px 6px 30px -15px #13205940;
+}
+.color-canvas-container {
+    width: fit-content;
+    margin: auto;
+    justify-content: center;
+    align-self: center;
+    position: relative;
+}
+.color-canvas-container.hidden {
+
+}
+.color-canvas-container .color-picker-indicator {
+    position: absolute;
+    background-color: transparent;
+    border: 2px var(--oxford-blue) solid;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    z-index: 10;
+    pointer-events: none;
+}
