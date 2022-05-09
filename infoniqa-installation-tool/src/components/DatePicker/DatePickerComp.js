@@ -10,9 +10,9 @@ const Date_PickerComp = (props) => {
 
     return(
     <div>
-       <div className='container yearNMonth_Container'>
+       <div className='DatePicker_container yearNMonth_Container'>
                 <YearNMonthCarusel curYear={_currentYear} setCurYear={setcurrentYear} curMonth={_currentMonth} setCurMonth={setcurrentMonth}/>
-            <div className='container month_Container'>
+            <div className='DatePicker_container month_Container'>
                 <MonthComponent ident={_ident} DayList={getDaysArray(_currentYear, _currentMonth)}/>
             </div>
         </div>
