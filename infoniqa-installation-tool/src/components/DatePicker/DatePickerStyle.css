@@ -19,6 +19,25 @@
     color: var(--red-orange);
 }
 
+.dayComp_Clicked{
+    border-radius: 100%;
+    background-color: var(--snow-white);
+    margin: 5px;
+    display: inline-flex;
+    padding: .5em;
+    font-weight: bold;
+    border-width: 0px;
+    border-color: var(--cornflower-blue);
+    border-style: solid;
+    transition: border-width 0.2s;
+}
+
+.dayComp_Clicked:hover{
+    border-width: 3.2px;
+    transition: border-width 0.2s;
+    color: var(--snow-white);
+}
+
 
 .DatePicker_container{
     width: 50px;
@@ -35,6 +54,7 @@
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
+
 .datetime-dates-list {
     flex-basis: 100%;
     display: inline-flex;

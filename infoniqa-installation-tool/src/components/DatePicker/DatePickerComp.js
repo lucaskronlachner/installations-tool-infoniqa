@@ -49,14 +49,20 @@ class DayComponent extends React.Component{
     }
 
     HandleClick = () => {
+        let element = document.getElementById(`${this.props.ident}DayComp`)
         if(!this.props.getChecked()){
             this._isSelected = true
             this.props.setChecked()
+            element.classList.add("dayComp_Clicked")
+            element.classList.remove("dayComp")
+            console.log(element.classList)
         }
 
         if(this._isSelected && this.props.getChecked()){
             this.props.setChecked()
             this._isSelected = false
+            element.classList.remove("dayComp_Clicked")
+            element.classList.add("dayComp")
         }
         this.UpdateStyle()
     }
@@ -66,7 +72,7 @@ class DayComponent extends React.Component{
         counter += 1
         this.breakStatment = (counter % this.props.listLength) === 0 ? <br className='breakLines'></br> : null
         return(
-            <div className='datepicker-container'>
+            <div className='Datepicker_Container'>
                 <div id={`${this.props.ident}DayComp`} className='dayComp' onClick={this.HandleClick}>
                     {
                     this.props.DayNumber
