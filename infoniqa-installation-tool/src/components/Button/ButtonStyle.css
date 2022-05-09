@@ -2,13 +2,13 @@
 
 .btn {
     font-weight: 400;
-    border-radius: 10px;
+    border-radius: 25rem;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease;
 }
 
 .btn:hover {
-    transform: translateY(-5px);
+    transform: translateY(-2px);
     background-color: var(--cornflower-blue);
 }
 /* Button Colors and Styles*/

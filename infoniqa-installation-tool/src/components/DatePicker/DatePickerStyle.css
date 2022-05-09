@@ -15,42 +15,33 @@
 
 .dayComp:hover{
     border-width: 3.2px;
-    margin-top: 0.95em;
-    margin-bottom: 0.95em;
     transition: border-width 0.2s;
     color: var(--red-orange);
 }
 
+
 .DatePicker_container{
-    height: 5em;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    margin: 3px;
-    display: inline;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.DatePicker_container div {
+    cursor: pointer;
 }
 
 .breakLines{
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
-
-.yearNMonth_Container{
-    display: flex;
-    width: max-content;
-    height: max-content;
-    z-index: -1;
-    border: solid var(--cornflower-blue) 4px;
-    border-radius: 5%;
-    background-color: var(--snow-white);
+.datetime-dates-list {
+    flex-basis: 100%;
+    display: inline-flex;
+    flex-wrap: wrap;
 }
-
 .month_Container{
-    display: inline;
-    width: max-content;
-    height: max-content;
-    border-radius: 0% 0% 5% 5%;
+    border-radius: 25px;
     border-style: solid;
     border-width: 4px;
     padding: 0.4em;
