@@ -21,7 +21,7 @@
     color: var(--red-orange);
 }
 
-.container{
+.DatePicker_container{
     height: 5em;
     -webkit-user-select: none;
     -moz-user-select: none;
