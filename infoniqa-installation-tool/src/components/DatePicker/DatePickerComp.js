@@ -11,11 +11,7 @@ const Date_PickerComp = (props) => {
     return(
     <div>
        <div className='yearNMonth_Container'>
-<<<<<<< HEAD
-            <YearNMonthCarusel curYear={_currentYear} setCurYear={setcurrentYear} curMonth={_currentMonth} setCurMonth={setcurrentMonth}/>
-=======
                 <YearNMonthCarusel curYear={_currentYear} setCurYear={setcurrentYear} curMonth={_currentMonth} setCurMonth={setcurrentMonth}/>
->>>>>>> 74177971c0e2a0d255ba10a7f14612a6100acb49
             <div className='month_Container'>
                 <MonthComponent ident={_ident} DayList={getDaysArray(_currentYear, _currentMonth)}/>
             </div>
