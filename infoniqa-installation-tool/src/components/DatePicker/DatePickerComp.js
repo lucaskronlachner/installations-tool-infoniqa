@@ -131,18 +131,24 @@ class YearNMonthCarusel extends React.Component{
     }
 
     handleMonthClick = () =>{
-
+        
     }
 
     changeYear = () => {
         console.log(this.Year)
-        this.setYear(new Date(this.Year, this.Month))
+        let element = document.getElementById('yearInput')
+        if(Number(element) <= new Date().getFullYear()){
+            this.setYear(new Date(Number(element)), this.Month)
+        }else{
+            this.setYear(this.Year,this.Month)
+        }
+        
     }
 
     render(){
         return(
             <div className=''>
-                <label onClick={this.handleMonthClick()}>{this.Month}</label>
+                <label class='monthButton' onClick={this.handleMonthClick()}>{this.Month}</label>
                 <input id='yearInput' type='text' placeholder='yyyy' value={this.Year} onChange={(event) => {
                     this.changeYear()
                 }}/>
