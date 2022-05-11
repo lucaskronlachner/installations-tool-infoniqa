@@ -1,15 +1,16 @@
 @import url("../../App.css");
 
 .inputField{
-    border-radius: 5px;
-    border-width: 1px;
+    border-radius: 10px;
+    border-width: 3px;
     height: 30px;
     border-color: var(--oxford-blue);
     color: var(--oxford-blue);
     font-weight: bold;
+    padding-left: 10px;
 }
 .inputField:hover{
-    background-color: var(--snow-white);
+    background-color: var(--light-cornflower-blue);
 }
 
 
