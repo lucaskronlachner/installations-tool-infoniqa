@@ -28,7 +28,7 @@ const Button = ({
     const handleClick = (event) => {
         console.log('you clicked me!');
     }
-
+    
     return (
         <div className="container">
             <button className={`btn ${checkButtonStyle} ${checkButtonSize}`} onClick={handleClick}>{children}</button>
