@@ -4,6 +4,8 @@
     border-radius: 100%;
     background-color: var(--snow-white);
     margin: 5px;
+    height: 1.25em;
+    width: 1.25em;
     display: inline-flex;
     padding: .5em;
     font-weight: bold;
@@ -49,6 +51,10 @@
     cursor: pointer;
 }
 
+.show{
+    display: block;
+}
+
 .breakLines{
     margin-top: 0.5em;
     margin-bottom: 0.5em;
@@ -63,6 +69,7 @@
     border-radius: 25px;
     border-style: solid;
     border-width: 4px;
+    display: flex;
     width: 500px;
     padding: 0.4em;
     border-color: var(--cornflower-blue);
@@ -74,7 +81,6 @@
     display: flex;
     flex-direction: column;
     align-content: flex-start;
-
 }
 
 #yearInput{
@@ -95,8 +101,6 @@
     margin-left: 1.2em;
     font-weight: bold;
     font-size: 15p;
+    padding: 5px;
 }
 
-.monthButton:enabled{
-    background-color: var(--cornflower-blue);
-}

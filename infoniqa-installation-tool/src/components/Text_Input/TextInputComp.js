@@ -10,7 +10,7 @@ export const TextInputField = (
         
     }
 
-    /*return (
+    return (
         <div>
             <form>
                 
@@ -19,7 +19,7 @@ export const TextInputField = (
             </form>
             
         </div>
-    )*/
+    )
     
 }
 
