@@ -4,11 +4,17 @@
 }
 .color-picker {
     width: 300px;
+    border: 3px var(--oxford-blue) solid;
+    padding: 10px;
+    border-radius: 25px;
 }
 .color-picker-button {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.color-picker-title {
+    margin: 0;
 }
 .color-picker-button .selected-color {
     width: 60px;
@@ -84,8 +90,18 @@
 .color-picker-rgb .color-rgb-input:last-child{
     border-right: none;
 }
-.color-picker-popup.hidden {
-
+.color-canvas-background {
+    transition: all 0.2s linear;
+}
+.color-canvas-background.hidden {
+    transform: translateY(5px);
+    opacity: 0;
+    pointer-events: none;
+}
+.color-canvas-background.shown {
+    opacity: 1;
+    transform: translateY(0px);
+    pointer-events: all;
 }
 .color-canvas-container .color-picker-indicator {
     position: absolute;

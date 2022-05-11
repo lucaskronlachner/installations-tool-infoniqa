@@ -10,6 +10,7 @@ class ColorPickerComp extends React.Component {
         this.inputR = React.createRef()
         this.inputG = React.createRef()
         this.inputB = React.createRef()
+        this.color_canvas_background = React.createRef()
         this.pickerSize = props.pickerSize
     }
     componentDidMount() {
@@ -22,8 +23,17 @@ class ColorPickerComp extends React.Component {
         pickerCanvas.width = pickerCanvas.offsetWidth * 2
         pickerCanvas.height = pickerCanvas.offsetHeight * 2
 
+        this.selectColor.current.onclick = () => {
+            if(this.color_canvas_background.current.classList.contains('hidden')){
+                this.color_canvas_background.current.classList.replace('hidden', 'shown')
+            }else{
+                this.color_canvas_background.current.classList.replace('shown', 'hidden')
+            }
+            
+        }
+
         let pickerRGBChangeEvent = () => {
-            let rgb = [doc.inputR.current.value, doc.inputG.current.value, doc.inputB.current.value]
+            let rgb = [parseInt(doc.inputR.current.value), parseInt(doc.inputG.current.value), parseInt(doc.inputB.current.value)]
             setPickerColorFromRGB(rgb, doc)
         }
         this.inputR.current.onchange = pickerRGBChangeEvent
@@ -113,7 +123,6 @@ class ColorPickerComp extends React.Component {
         }
         function rgb2Hsv(tempR, tempG, tempB) {
             let r = tempR / 255, g = tempG /255, b = tempB / 255;
-            console.log("moiga");
             var max = Math.max(r, g, b), min = Math.min(r, g, b);
             var h, s, v = max;
 
@@ -148,7 +157,6 @@ class ColorPickerComp extends React.Component {
         function setPickerColorFromRGB(rgb, doc) {
             let [hue, sat, val] = rgb2Hsv(rgb[0], rgb[1], rgb[2])
             let [x, y] = polar2xy(sat * radiusPicker, hue)
-            console.log(x, y);
             doc.pickerIndicator.current.style.left = `${x}px`
             doc.pickerIndicator.current.style.top = `${y}px`
         }
@@ -162,6 +170,8 @@ class ColorPickerComp extends React.Component {
             pickerElement.style.left = `${x - boundsPicker.width / 2}px`
             pickerElement.style.top = `${y - boundsPicker.height / 2}px`
             pickerElement.style.backgroundColor = `rgba(${p[0]},${p[1]},${p[2]},${p[3]})`
+            doc.selectColor.current.style.backgroundColor = `rgba(${p[0]},${p[1]},${p[2]},${p[3]})`
+            let [hue, sat, val] = rgb2Hsv(p[0], p[1], p[2])
             setRGBValues(p, doc)
         }
         function setRGBValues(rgb, doc) {
@@ -174,8 +184,8 @@ class ColorPickerComp extends React.Component {
         return (
             <div className='color-picker'>
                 <div className='color-canvas-relative-container'>
-                    <div className='color-canvas-background'>
-                        <div className='color-picker-popup hidden'>
+                    <div ref={this.color_canvas_background} className='color-canvas-background hidden'>
+                        <div className='color-picker-popup'>
                             <div className='color-canvas-container'>
                                 <div ref={this.pickerIndicator} className='color-picker-indicator'></div>
                                 <canvas ref={this.colorPickerCanvas} id="colorCanvas"></canvas>
