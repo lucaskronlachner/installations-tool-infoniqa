@@ -83,12 +83,14 @@
     align-content: flex-start;
 }
 
-#yearInput{
+.YearNMonth{
     border-radius: 25px;
     border-style: solid;
-    border-width: 3px;
+    border-width: 4px;
     border-color: var(--cornflower-blue);
-    padding: 5px;
+    padding: 8px;
+    margin-left: 1em;
+    margin-bottom: 1em;
     font-weight: bold;
 }
 

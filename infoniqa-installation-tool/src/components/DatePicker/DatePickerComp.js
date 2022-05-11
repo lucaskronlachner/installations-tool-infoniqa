@@ -6,21 +6,23 @@ const _numberOMonths = 12
 const _lengthYears = 12
 
 const Date_PickerComp = (props) => {
-    const [_currentYear, setcurrentYear] = useState(props.Year)
-    const [_currentMonth, setcurrentMonth] = useState(props.Month)
+    const [_currentYear] = useState(props.Year)
+    const [_currentMonth] = useState(props.Month)
     const [_usedList, setusedList] = useState(1);
     const [_ident] = useState(props.ident)
 
-    const handle = (value, setMethod) =>{
-        setMethod(value)
+    const handle = (value) =>{
+        setusedList(value)
+        console.log(value)
     }
-       
+
+    
     
 
     return(
     <div>
        <div className='yearNMonth_Container'>
-                <YearNMonthCarusel curYear={_currentYear} curMonth={_currentMonth} usedList={_usedList} setUsedList={setusedList} handler={handle}/>
+                <YearNMonthCarusel curYear={_currentYear} curMonth={_currentMonth} usedList={_usedList} handler={handle}/>
             <div className='month_Container'>
                 <MonthComponent ident={_ident} usedList={_usedList} DayList={getDaysArray(_currentYear, _currentMonth)} MonthList={getMonthArray()} YearList={getYearArray()}/>
             </div>
@@ -184,7 +186,6 @@ class MonthComponent extends React.Component{
 class YearNMonthCarusel extends React.Component{
     constructor(props){
         super(props)
-        this.setUsedList = props.setUsedList
         this.Month = props.curMonth
         this.Year = props.curYear
         
@@ -198,21 +199,19 @@ class YearNMonthCarusel extends React.Component{
 
     handleClick = (event) =>{
         console.log("Helloasdf")
-        if(this.state._clicked <= 3){
+        if(this.state._clicked < 3){
             this.setState({
                 _clicked : this.state._clicked + 1
             })
 
-            
-
-            this.handleMethod(this.state._clicked, this.setUsedList)
+            this.handleMethod(this.state._clicked)
         }
     }
    
     render(){
         return(
             <div>
-                <label class='YearNMonth' onClick={(event) => this.handleClick(event)}>Hello</label>
+                <label class='YearNMonth' onClick={(event) => this.handleClick(event)}>Date</label>
             </div>
         )
     }
