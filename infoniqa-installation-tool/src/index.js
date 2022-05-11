@@ -15,9 +15,11 @@ import DatePickerComp from './components/DatePicker/DatePickerComp';
 ReactDOM.render(
   <React.StrictMode>
     <Checkbox _ident={'1'} items={["Herbert", "Rahel", "Fort"]}/>
-    <Button onClick={() =>{console.log("You Clicked on Me!")}} buttonStyle="btn--default--solid" buttonSize="btn--medium">Button</Button>
     <ColorPickerComp pickerSize='150px'></ColorPickerComp>
     <DropDownComp list={["moiga", "lol", "funny", "peepe", "yoo", "lasdjfölasjfd" ]}></DropDownComp>
+    <br></br>
+    <Button buttonStyle="btn--default--solid" buttonSize="btn--medium">Button</Button>
+    <br></br>
     <TextInputField></TextInputField>
     <RadioComp/>
     <SwitchComp isOn={true}/>
