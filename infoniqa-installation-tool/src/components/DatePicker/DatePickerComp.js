@@ -2,18 +2,29 @@ import React, {useState} from 'react';
 import './DatePickerStyle.css';
 import "../../App.css";
 
+const _numberOMonths = 12
+const _lengthYears = 12
 
 const Date_PickerComp = (props) => {
-    const [_currentYear, setcurrentYear] = useState(props.Year)
-    const [_currentMonth, setcurrentMonth] = useState(props.Month)
+    const [_currentYear] = useState(props.Year)
+    const [_currentMonth] = useState(props.Month)
+    const [_usedList, setusedList] = useState(1);
     const [_ident] = useState(props.ident)
+
+    const handle = (value) =>{
+        setusedList(value)
+        console.log(value)
+    }
+
+    
+    
 
     return(
     <div>
        <div className='yearNMonth_Container'>
-                <YearNMonthCarusel curYear={_currentYear} setCurYear={setcurrentYear} curMonth={_currentMonth} setCurMonth={setcurrentMonth}/>
+                <YearNMonthCarusel curYear={_currentYear} curMonth={_currentMonth} usedList={_usedList} handler={handle}/>
             <div className='month_Container'>
-                <MonthComponent ident={_ident} DayList={getDaysArray(_currentYear, _currentMonth)}/>
+                <MonthComponent ident={_ident} usedList={_usedList} DayList={getDaysArray(_currentYear, _currentMonth)} MonthList={getMonthArray()} YearList={getYearArray()}/>
             </div>
         </div>
     </div>
@@ -29,6 +40,23 @@ const getDaysArray = (year, month) => {
       date.setDate(date.getDate() + 1);
     }
     return result;
+}
+
+const getMonthArray = () => {
+    const result = []
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    for(let i = 0; i < _numberOMonths; i++){
+        result.push(monthNames[i])
+    }
+    return result
+}
+
+const getYearArray = (Year) => {
+    const result = []
+    for (let index = 0; index < _lengthYears; index++) {
+        result.push(Year + index)
+    }
 }
 
 class DayComponent extends React.Component{
@@ -89,8 +117,50 @@ class MonthComponent extends React.Component{
         super(props)
         this.check = this.check.bind(this)
         this.getcheck = this.getcheck.bind(this)
+        this.setUsedList = this.setUsedList.bind(this)
+        this.usedList = props.usedList
         this.state = {
             hasChecked: false,
+        }
+        this.UsingList = []
+    }
+
+    setUsedList(){
+        switch(this.usedList){
+            case 1: 
+                this.props.DayList.forEach((element, index) => {
+                    element = `${element}`
+                    if(element.length === 1){
+                        element = `0${element}`
+                    }
+                    this.props.DayList[index] = element
+                });
+                this.UsingList = this.props.DayList
+            break
+            case 2:
+                this.props.YearList.forEach((element, index) => {
+                    element = `${element}`
+                    this.props.YearList[index] = element
+                });
+                this.UsingList = this.props.YearList
+            break
+            case 3:
+                this.props.MonthList.forEach((element, index) => {
+                    element = `${element}`
+                    this.props.MonthList[index] = element
+                });
+                this.UsingList = this.props.MonthList
+            break
+            default: 
+                console.log("No List")
+                this.props.DayList.forEach((element, index) => {
+                    element = `${element}`
+                    if(element.length === 1){
+                        element = `0${element}`
+                    }
+                    this.props.DayList[index] = element
+                });
+                this.UsingList = this.props.DayList
         }
     }
 
@@ -103,18 +173,10 @@ class MonthComponent extends React.Component{
     }
 
     render(){
-
-        this.props.DayList.forEach((element, index) => {
-            element = `${element}`
-            if(element.length === 1){
-                element = `0${element}`
-            }
-            this.props.DayList[index] = element
-        });
-
+        this.setUsedList()
         return(
             <div className='datetime-dates-list'>
-                {this.props.DayList.map((item, index) => (<DayComponent key={index + 0} counter={index} ident={`${this.props.ident}${index}`} DayNumber={item} listLength={5} setChecked={this.check} getChecked={this.getcheck}/>))}
+                {this.UsingList.map((item, index) => (<DayComponent key={index + 0} counter={index} ident={`${this.props.ident}${index}`} DayNumber={item} listLength={5} setChecked={this.check} getChecked={this.getcheck}/>))}
             </div>
         )
     }
@@ -124,28 +186,32 @@ class MonthComponent extends React.Component{
 class YearNMonthCarusel extends React.Component{
     constructor(props){
         super(props)
-        this.setMonth = props.setCurMonth
-        this.setYear = props.setCurYear
         this.Month = props.curMonth
         this.Year = props.curYear
+        
+        this.handleMethod = props.handler
+
+
+        this.state = {
+            _clicked : props.usedList
+        }
     }
 
-    handleMonthClick = () =>{
+    handleClick = (event) =>{
+        console.log("Helloasdf")
+        if(this.state._clicked < 3){
+            this.setState({
+                _clicked : this.state._clicked + 1
+            })
 
+            this.handleMethod(this.state._clicked)
+        }
     }
-
-    changeYear = () => {
-        console.log(this.Year)
-        this.setYear(new Date(this.Year, this.Month))
-    }
-
+   
     render(){
         return(
-            <div className=''>
-                <label onClick={this.handleMonthClick()}>{this.Month}</label>
-                <input id='yearInput' type='text' placeholder='yyyy' value={this.Year} onChange={(event) => {
-                    this.changeYear()
-                }}/>
+            <div>
+                <label class='YearNMonth' onClick={(event) => this.handleClick(event)}>Date</label>
             </div>
         )
     }

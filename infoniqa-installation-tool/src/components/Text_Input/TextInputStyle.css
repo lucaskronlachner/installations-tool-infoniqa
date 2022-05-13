@@ -13,6 +13,7 @@
 }
 .inputField:hover{
     background-color: var(--light-cornflower-blue);
+    transition: all .5s ease;
 }
 
 .inputField:focus{
