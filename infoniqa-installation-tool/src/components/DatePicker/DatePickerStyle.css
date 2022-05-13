@@ -1,11 +1,11 @@
 @import url("../../App.css");
 
 .dayComp{
-    border-radius: 100%;
+    border-radius: 50%;
     background-color: var(--snow-white);
     margin: 5px;
-    height: 1.25em;
-    width: 1.25em;
+    height: fit-content;
+    width: fit-content;
     display: inline-flex;
     padding: .5em;
     font-weight: bold;
@@ -92,17 +92,14 @@
     margin-left: 1em;
     margin-bottom: 1em;
     font-weight: bold;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-.monthButton{
-    border-radius: 25px;
-    border-style: solid;
-    border-width: 3px;
-    border-color: var(--cornflower-blue);
-    background-color: var(--snow-white);
-    margin-left: 1.2em;
-    font-weight: bold;
-    font-size: 15p;
-    padding: 5px;
+.YearNMonth:hover{
+    color: var(--cornflower-blue);
 }
+
 
