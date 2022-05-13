@@ -4,14 +4,15 @@ import "../../App.css";
 
 export const TextInputField = (
 ) => {
-
+    const titel = 'Titel'
     const handleChange = (event) => {
     }
 
     return (
         <div>
             <form>
-                <label htmlFor="app-input-field">{}</label>
+                <label htmlFor="app-input-field" className="inputLbl">{titel}</label>
+                <br></br>
                 <input type="text" className="inputField" placeholder={''} onChange={handleChange}></input>
             </form>
             
