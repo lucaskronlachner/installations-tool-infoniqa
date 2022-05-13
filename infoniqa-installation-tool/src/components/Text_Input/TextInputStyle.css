@@ -1,18 +1,23 @@
 @import url("../../App.css");
 
 .inputField{
-    border-radius: 10px;
-    border-width: 3px;
+    border: none;
+    border: 3px var(--oxford-blue) solid;
+    border-radius: 25px;
     height: 30px;
-    border-color: var(--oxford-blue);
     color: var(--oxford-blue);
     font-weight: bold;
     padding-left: 10px;
+    transition: background 0.1s linear;
+    background-color: var(--snow-white);
 }
 .inputField:hover{
     background-color: var(--light-cornflower-blue);
 }
 
+.inputField:focus{
+    outline: none;
+}
 
 .txtInput_large {
     height: 30px;

@@ -4,6 +4,7 @@ import './index.css';
 import Checkbox from './components/Checkbox/CheckboxComp';
 import reportWebVitals from './reportWebVitals';
 import ColorPickerComp from './components/ColorPicker Component/ColorPickerComp';
+import FileUploadComp from './components/FileUpload Component/FileUploadComp';
 import DropDownComp from './components/DropDown Component/DropDownComp';
 import Button from './components/Button/ButtonComp';
 import TextInputField from './components/Text_Input/TextInputComp';
@@ -14,16 +15,17 @@ import DatePickerComp from './components/DatePicker/DatePickerComp';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Checkbox _ident={'1'} items={["Herbert", "Rahel", "Fort"]}/>
+    <Checkbox _ident={'1'} items={["lorem", "ipsum", "Fort"]}/>
     <ColorPickerComp pickerSize='150px'></ColorPickerComp>
-    <DropDownComp list={["moiga", "lol", "funny", "peepe", "yoo", "lasdjfölasjfd" ]}></DropDownComp>
+    <DropDownComp list={["mxngodazi", "wer?", "hot gfrogt", "funny", "yoo", "lasdjfölasjfd" ]}></DropDownComp>
+    <FileUploadComp></FileUploadComp>
     <br></br>
     <Button buttonStyle="btn--default--solid" buttonSize="btn--medium">Button</Button>
     <br></br>
     <TextInputField></TextInputField>
     <RadioComp/>
     <SwitchComp isOn={true}/>
-    <Checkbox _ident={'2'} items={["Herbert", "Rahel", "Fortnite"]}/>
+    <Checkbox _ident={'2'} items={["Fortynaity", "ela", "babaGEEEEEE"]}/>
     <DatePickerComp Year={2022} Month={3} ident={'1'}/>
   </React.StrictMode>,
 

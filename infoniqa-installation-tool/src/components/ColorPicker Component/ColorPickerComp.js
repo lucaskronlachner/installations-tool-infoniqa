@@ -37,6 +37,12 @@ class ColorPickerComp extends React.Component {
             setPickerColorFromRGB(rgb, doc)
         }
         this.inputR.current.onchange = pickerRGBChangeEvent
+        this.inputG.current.onchange = pickerRGBChangeEvent
+        this.inputB.current.onchange = pickerRGBChangeEvent
+
+        this.inputR.current.value = 255
+        this.inputG.current.value = 255
+        this.inputB.current.value = 255
 
         let ctx = pickerCanvas.getContext('2d')
         function drawCircle() {
@@ -146,23 +152,29 @@ class ColorPickerComp extends React.Component {
         pickerCanvas.onmousedown = (e) => {
             setPickerColor(e.pageX, e.pageY, this.pickerIndicator.current, this)
             dragging = true
+            this.pickerIndicator.current.classList.add('picking')
         }
         pickerCanvas.onmousemove = (e) => {
-            if (dragging)
+            if (dragging){
                 setPickerColor(e.pageX, e.pageY, this.pickerIndicator.current, this)
+            }
         }
         document.onmouseup = (e) => {
+            this.pickerIndicator.current.classList.remove('picking')
             dragging = false
         }
         function setPickerColorFromRGB(rgb, doc) {
+            let boundsPicker = doc.pickerIndicator.current.getBoundingClientRect()
             let [hue, sat, val] = rgb2Hsv(rgb[0], rgb[1], rgb[2])
-            let [x, y] = polar2xy(sat * radiusPicker, hue)
-            doc.pickerIndicator.current.style.left = `${x}px`
-            doc.pickerIndicator.current.style.top = `${y}px`
+            console.log(sat, hue);
+            let [x, y] = polar2xy(sat * radiusPicker, hue * 360)
+            doc.pickerIndicator.current.style.left = `${x / 2 + radiusPicker / 2 - boundsPicker.width / 2}px`
+            doc.pickerIndicator.current.style.top = `${y / 2 + radiusPicker / 2 - boundsPicker.height / 2}px`
+            doc.pickerIndicator.current.style.backgroundColor = `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`
         }
-        function setPickerColor(pageX, pageY, pickerElement, doc) {
+        let boundsPicker = this.pickerIndicator.current.getBoundingClientRect()
+        function setPickerColor(pageX, pageY, pickerElement) {
             let bounds = pickerCanvas.getBoundingClientRect()
-            let boundsPicker = pickerElement.getBoundingClientRect()
 
             let x = pageX - window.scrollX - bounds.left
             let y = pageY - window.scrollY - bounds.top
@@ -179,6 +191,7 @@ class ColorPickerComp extends React.Component {
             doc.inputG.current.value = rgb[1]
             doc.inputB.current.value = rgb[2]
         }
+        setPickerColorFromRGB([255,255,255], this)
     }
     render() {
         return (

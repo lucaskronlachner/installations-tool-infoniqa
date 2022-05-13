@@ -28,16 +28,17 @@ body {
 }
   
 .dropdown div.dropdown-header {
+    transition: background 0.1s linear;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  color: var(--oxford-blue);
-  text-decoration: none;
-  height: 100%;
-  padding: 0.5rem 1rem;
-  background: transparent;
-  border: 3px var(--oxford-blue) solid;
-  border-radius: 20px;
+    color: var(--oxford-blue);
+    text-decoration: none;
+    height: 100%;
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 3px var(--oxford-blue) solid;
+    border-radius: 20px;
 }
 
 .dropdown:hover div.dropdown-header {
@@ -54,11 +55,12 @@ body {
   cursor: pointer;
 }
 .dropdown ul li {
+    transition: background 0.05s linear;
     box-sizing: border-box;
-  clear: both;
-  display: flex;
-  width: 100%;
-  padding: 5px;
+    clear: both;
+    display: flex;
+    width: 100%;
+    padding: 5px;
 }
 .dropdown ul li div {
     width: 100%;
