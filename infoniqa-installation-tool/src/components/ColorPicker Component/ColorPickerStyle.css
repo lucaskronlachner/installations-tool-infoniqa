@@ -5,7 +5,7 @@
 .color-picker {
     width: 300px;
     border: 3px var(--oxford-blue) solid;
-    padding: 10px;
+    padding: 0.5rem 1rem;
     border-radius: 25px;
 }
 .color-picker-button {
@@ -63,10 +63,19 @@
     display: flex;
     justify-content: space-evenly;
     width: 100%;
-    height: 40px;
+    height: 30px;
     border: 3px var(--oxford-blue) solid;
     border-radius: 25px;
     overflow: hidden;
+}
+.color-picker-rgb input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  /* Firefox */
+.color-picker-rgb input[type=number] {
+    -moz-appearance: textfield;
 }
 .color-picker-rgb .color-rgb-input input {
     border: none;

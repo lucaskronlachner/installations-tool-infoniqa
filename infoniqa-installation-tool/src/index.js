@@ -20,7 +20,7 @@ ReactDOM.render(
     <DropDownComp list={["mxngodazi", "wer?", "hot gfrogt", "funny", "yoo", "lasdjfölasjfd" ]}></DropDownComp>
     <FileUploadComp></FileUploadComp>
     <br></br>
-    <Button buttonStyle="btn--default--solid" buttonSize="btn--medium">Button</Button>
+    <Button buttonStyle="btn--default--disabled" handleClick={() => console.log("you clicked me")}>Button</Button>
     <br></br>
     <TextInputField></TextInputField>
     <RadioComp/>

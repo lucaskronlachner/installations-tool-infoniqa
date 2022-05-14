@@ -1,20 +1,20 @@
 @import url("../../App.css");
 
 .btn {
+    padding: 0.5rem 1rem;
+    font-size: 14px;
     font-weight: 400;
     border-radius: 25rem;
-    cursor: pointer;
     transition: all 0.4s ease;
 }
 
-.btn:hover {
+.btn:not(.btn--primary--disabled):hover {
     transform: translateY(-2px);
     background-color: var(--light-cornflower-blue);
     color: var(--oxford-blue);
     transition: all .3s ease;
+    cursor: pointer;
 }
-
-
 
 
 /* Button Colors and Styles*/
@@ -24,46 +24,8 @@
     border: none;
 }
 
-
-.btn--danger--solid {
-    background-color: var(--red-orange);
+.btn--primary--disabled {
+    background-color: var(--light-cornflower-blue);
     color: var(--snow-white);
     border: none;
-}
-
-.btn--success-solid {
-    background-color: var(--cornflower-blue);
-    color: var(--snow-white);
-    border: none;
-}
-
-
-
-
-
-.btn--primary--outline{
-    background-color: transparent;
-    border: 2px solid var(--oxford-blue);
-    color: var(--oxford-blue);
-}
-
-.btn--danger--outline{
-    background-color: transparent;
-    border: 2px solid var(--red-orange);
-    color: var(--red-orange);
-}
-.btn--success--outline{
-    background-color: transparent;
-    border: 2px solid var(--cornflower-blue);
-    color: var(--cornflower-blue);
-}
-
-/*Button Sizes*/
-.btn--medium{
-    padding: 10px 20px;
-    font-size: 18px;
-}
-.btn--large{
-    padding: 15px 30px;
-    font-size: 20px;
 }

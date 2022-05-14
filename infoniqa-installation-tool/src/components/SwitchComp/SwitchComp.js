@@ -2,23 +2,38 @@ import React , {useState}from 'react';
 import './SwitchStyle.css';
 import "../../App.css";
 
-  
-const SwitchComp = (props) => {
-    const [isOn, setIsOn] = useState(props.On)
+class SwitchComp extends React.Component {
+    constructor(props){
+        super(props)
+        this.switchState = (props.isOn) ? 'on' : 'off'
+        this.switchElement = React.createRef()
+    }
+    componentDidMount() {
+        let element = this.switchElement.current
+        element.onmouseup = () => {
+            element.getElementsByClassName("switch-dot-container")[0].style.marginLeft = null
+            element.getElementsByClassName("switch-dot-container")[0].style.width = null
+            if(element.classList.contains("on")){
+                element.classList.replace('on', 'off')
+            }else if(element.classList.contains("off")){
+                element.classList.replace('off', 'on')
+            }
+        }
+        element.onmousedown = () => {
+            element.getElementsByClassName("switch-dot-container")[0].style.width = "100%"
+            element.getElementsByClassName("switch-dot-container")[0].style.marginLeft = "0%"
+        }
+    }
+    render(){
+        return (
+            <div ref={this.switchElement} className={`switch ${this.switchState}`}>
+                <div className="switch-dot-container">
+                    <div className="switch-dot"></div>
+                </div>
+            </div>
+        );
+    }
+}
 
-    return (
-      <>
-      <div className="container">
-        <input checked={isOn} onChange={() => { setIsOn(!isOn) }} className="react-switch-checkbox" id={`react-switch-new`} type="checkbox"
-        />
-
-
-        <label style={{background: isOn && 'var(--cornflower-blue)'}} className="react-switch-label" htmlFor={`react-switch-new`}>
-          <span className={`react-switch-button`} />
-        </label>
-        </div>
-      </>
-    );
-  };
 
 export default SwitchComp;

@@ -2,7 +2,7 @@
     width: 100px;
     background-color: var(--snow-white);
     text-overflow: ellipsis;
-    padding: 8px;
+    padding: 0.5rem 1rem;
     border-radius: 25px;
     border: 3px var(--oxford-blue) solid;
     color: var(--oxford-blue);
