@@ -1,9 +1,13 @@
 @import url("../../App.css");
 
-.inputField{
-    border: none;
+.text-input-comp {
     border: 3px var(--oxford-blue) solid;
     border-radius: 25px;
+    overflow: hidden;
+    width: 100%;
+}
+.inputField{
+    border: none;
     color: var(--oxford-blue);
     padding: 0.5rem 1rem;
     transition: background 0.1s linear;
@@ -13,7 +17,7 @@
     sans-serif !important;
     font-size: 14px;
     width: 100%;
-    box-sizing: border-box;
+    height: 100%;
 }
 .inputField:hover{
     background-color: var(--light-cornflower-blue);

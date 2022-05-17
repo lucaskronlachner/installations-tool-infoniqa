@@ -26,9 +26,11 @@ class SwitchComp extends React.Component {
     }
     render(){
         return (
-            <div ref={this.switchElement} className={`switch ${this.switchState}`}>
-                <div className="switch-dot-container">
-                    <div className="switch-dot"></div>
+            <div className='switch-comp'>
+                <div ref={this.switchElement} className={`switch ${this.switchState}`}>
+                    <div className="switch-dot-container">
+                        <div className="switch-dot"></div>
+                    </div>
                 </div>
             </div>
         );

@@ -1,4 +1,5 @@
 import React from 'react'
+import TextInputField from '../Text_Input/TextInputComp'
 import './ColorPickerStyle.css'
 
 class ColorPickerComp extends React.Component {
@@ -10,8 +11,10 @@ class ColorPickerComp extends React.Component {
         this.inputR = React.createRef()
         this.inputG = React.createRef()
         this.inputB = React.createRef()
+        this.hexInputField = React.createRef()
         this.color_canvas_background = React.createRef()
         this.pickerSize = props.pickerSize
+        this.onChangeColor = props.onChangeColor
     }
     componentDidMount() {
         let dragging = false
@@ -35,10 +38,13 @@ class ColorPickerComp extends React.Component {
         let pickerRGBChangeEvent = () => {
             let rgb = [parseInt(doc.inputR.current.value), parseInt(doc.inputG.current.value), parseInt(doc.inputB.current.value)]
             setPickerColorFromRGB(rgb, doc)
+            this.onChangeColor?.()
         }
         this.inputR.current.onchange = pickerRGBChangeEvent
         this.inputG.current.onchange = pickerRGBChangeEvent
         this.inputB.current.onchange = pickerRGBChangeEvent
+
+        this.hexInputField.current.onChange = (event) => {console.log(event);}
 
         this.inputR.current.value = 255
         this.inputG.current.value = 255
@@ -174,6 +180,8 @@ class ColorPickerComp extends React.Component {
             pickerElement.style.top = `${y - boundsPicker.height / 2}px`
             pickerElement.style.backgroundColor = `rgb(${p[0]},${p[1]},${p[2]}`
             doc.selectColor.current.style.backgroundColor = `rgb(${p[0]},${p[1]},${p[2]}`
+            this.hexInputField.current.innerText = `${rgbToHex(p[0], p[1], p[2])}`
+            
             let [hue, sat, val] = rgb2Hsv(p[0], p[1], p[2])
             setRGBValues(p, doc)
         }
@@ -181,6 +189,22 @@ class ColorPickerComp extends React.Component {
             doc.inputR.current.value = rgb[0]
             doc.inputG.current.value = rgb[1]
             doc.inputB.current.value = rgb[2]
+        }
+        function componentToHex(c) {
+            var hex = c.toString(16);
+            return hex.length == 1 ? "0" + hex : hex;
+        }
+        function rgbToHex(r, g, b) {
+            return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+        }
+        function hexToRgb(hex){
+            var aRgbHex = hex.match(/.{1,2}/g);
+            return [parseInt(aRgbHex[0], 16), parseInt(aRgbHex[1], 16), parseInt(aRgbHex[2], 16)]
+        }
+        function onHexInputChange (element) {
+            console.log("based");
+            setPickerColorFromRGB(hexToRgb(element.innerText), this)
+            pickerRGBChangeEvent()
         }
         setPickerColorFromRGB([255,255,255], this)
     }
@@ -208,6 +232,7 @@ class ColorPickerComp extends React.Component {
                                     <input type='number' ref={this.inputB} className='b-input' max={255}></input>
                                 </div>
                             </div>
+                            <TextInputField ref={this.hexInputField} title='#hex'></TextInputField>
                         </div>
                     </div>
                 </div>

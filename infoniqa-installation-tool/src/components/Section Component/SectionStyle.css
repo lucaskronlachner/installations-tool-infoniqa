@@ -1,0 +1,89 @@
+.section-component{
+    border-radius: 25px;
+    border: 1px var(--oxford-blue) solid;
+    margin: 10px;
+    position: relative;
+    margin-top: 20px;
+}
+.section-component .section-component-header {
+    position: absolute;
+    top: -1em;
+    background-color: var(--snow-white);
+    border: 1px var(--oxford-blue) solid;
+    border-radius: 25px;
+    padding: 5px;
+    left: 1em;
+}
+.section-item-component {
+    padding: 0.75rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.section-main-content {
+    width: 25%;
+}
+.section-main-content.right {
+    display: flex;
+    justify-content: flex-end;
+}
+.section-main-content.center {
+    display: flex;
+    justify-content: center;
+}
+.section-main-content.stretch {
+    display: flex;
+    justify-content: stretch;
+}
+.section-item-header-element {
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.section-item-header-element h1 {
+    font-size: 20px;
+    margin: 0;
+}
+.section-item-header-element .info-element {
+    position: relative;
+    margin-left: 10px;
+}
+.section-item-header-element .info-element:hover .info-hover-element{
+    opacity: 1;
+}
+.section-item-header-element .info-button {
+    cursor: pointer;
+    background-color: var(--cornflower-blue);
+    color: var(--snow-white);
+    font-weight: bold;
+    font-size: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    width: 15px;
+    height: 15px;
+}
+.section-item-header-element .info-element .info-hover-element {
+    opacity: 0;
+    z-index: 10;
+    transition: opacity 0.1s linear;
+    pointer-events: none;
+    max-width: 400px;
+    min-width: 200px;
+    box-sizing: border-box;
+    position: absolute;
+    background-color: var(--snow-white);
+    -webkit-box-shadow: 0px 0px 30px -15px #13205973; 
+    padding: 10px;
+    border-radius: 20px;
+    top: 20px;
+    box-shadow: 0px 0px 30px -15px #13205973;
+}
+.with-header .section-item-component:nth-child(2) {
+    padding-top: 2.5em;
+}
+.section-item-component:nth-child(odd) {
+    background-color: #00000006;
+}

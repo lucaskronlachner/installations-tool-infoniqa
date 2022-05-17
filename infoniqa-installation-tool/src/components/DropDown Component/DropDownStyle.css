@@ -20,7 +20,7 @@ body {
 
 .dropdown {
   position: relative;
-  width: 200px;
+  width: 100%;
   color: var(--oxford-blue);
   display: block;
   text-decoration: none;
@@ -102,7 +102,7 @@ body {
    display: block;
    animation: animate_dropdown_in 0.1s ease-out forwards;
 }
-.arrow {
+.dropdown .arrow {
     border: solid var(--cornflower-blue);
     border-width: 0 3px 3px 0;
     display: inline-block;

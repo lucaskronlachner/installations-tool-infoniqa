@@ -1,87 +1,66 @@
 @import url("../../App.css");
 
-.container_Check{
-    height: 5em;
+.checkbox-component {
+    margin: auto;
     -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
-    margin: 3px;
-    display: inline;
+    cursor: pointer;
 }
-
-.checkListContainer{
-    display: flex;
-    margin-bottom: 0.5em;
-    margin-top: 0.5em;
-    flex-direction: column;
-    flex-grow: 2;
-    justify-content: center;
-    align-content: center;
+.checkbox-component:hover .checkbox-check-element {
+    border: 2px solid var(--cornflower-blue);
 }
-
-
-.checkBoxButton{
-    width: 1em;
-    height: 1em;
-    transform: rotate(45deg);
+.checkbox-component span {
+    display: inline-block;
+    vertical-align: middle;
+    transform: translate3d(0, 0, 0);
 }
-
-.container_Check input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-
-
-.boxClass{
-    left: -0.8em;
+.checkbox-component .checkbox-check-element {
+    box-sizing: border-box;
     position: relative;
-    display: flex;
-    width: 1.5rem;
-    height: 1.5rem;
-    border-width: 5px;
-    border-radius:15%;
-    transform: rotate(45deg);
-    border-color: var(--cornflower-blue);
-    border-style: solid;
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    transform: scale(1);
+    vertical-align: middle;
+    border: 2px solid var(--oxford-blue);
+    transition: all 0.1s ease;
 }
-
-.boxClass:hover{
-    background-color: #ccc;
-}
-
-.container_Check input:checked ~ .boxClass{
-    background-color: var(--cornflower-blue);
-}
-
-.boxClass:hover:after{
-    border-color: var(--red-orange);
-}
-
-.container_Check input:checked ~ .boxClass:after{
-    opacity: 100;
-}
-
-.boxClass:after{
-    opacity: 0;
-    top: 2.5px;
-    left: 7px;
+.checkbox-component .checkbox-check-element .chech-svg-container {
     position: absolute;
-    content: "";
-    height: 15px;
-    width: 6px;
-    border-bottom: 3px var(--snow-white) solid;
-    border-right: 3px var(--snow-white) solid;
-    outline: solid transparent 1px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-
-.DescriptionText{
-    top: -1.83em;
-    margin-left: 2rem;
-    position: relative;
-    color: var(--oxford-blue);
+.checkbox-component .checkbox-check-element svg {
+    box-sizing: border-box;
+    fill: none;
+    stroke: #FFFFFF;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 16px;
+    stroke-dashoffset: 16px;
+    transition: all 0.3s ease;
+    transition-delay: 0.1s;
+    transform: translate3d(0, 0, 0);
+}
+.checkbox-container.checked .checkbox-component .checkbox-check-element {
+    background: var(--red-orange);
+    border-color: var(--oxford-blue);
+    animation: check 0.2s ease-out;
+}
+.checkbox-component .checkbox-title {
+    margin: 5px;
+}
+.checkbox-container.checked .checkbox-component .checkbox-check-element svg {
+    stroke-dashoffset: 0;
+}
+@keyframes check {
+    50% {
+      transform: scale(0.95);
+    }
 }

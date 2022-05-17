@@ -3,6 +3,10 @@ import './FileUploadStyle.css';
 
 class FileUploadComp extends React.Component {
 
+    state = {
+        selectedFile: ""
+    }
+
     constructor(props) {
         super(props)
         this.fileSelect = React.createRef()
@@ -15,7 +19,8 @@ class FileUploadComp extends React.Component {
             input.onchange = _ => {
                 // you can use this method to get file and perform respective operations
                 let files = Array.from(input.files);
-                this.fileSelect.current.innerHTML = files;
+                this.fileSelect.current.innerHTML = files[0].name;
+                this.setState({selectedFile : files[0]})
             };
             input.click();
         }
@@ -23,7 +28,7 @@ class FileUploadComp extends React.Component {
 
     render() {
         return (
-            <div ref={this.fileSelect} class="selectFile">Select File</div>
+            <div ref={this.fileSelect} className="selectFile">Select File</div>
         )
     }
 }
