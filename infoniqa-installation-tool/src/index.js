@@ -36,6 +36,9 @@ ReactDOM.render(
         <SectionItemComp header='Color Picker' info='choose dat color'>
             <ColorPickerComp pickerSize='150px'></ColorPickerComp>
         </SectionItemComp>
+        <SectionItemComp header='Color Picker' info='choose dat color'>
+            <ColorPickerComp></ColorPickerComp>
+        </SectionItemComp>
         <SectionItemComp header='Do you want cheese on your burger?'>
             <SwitchComp isOn={true}/>
         </SectionItemComp>
@@ -47,9 +50,15 @@ ReactDOM.render(
         </SectionItemComp>
     </SectionComp>
     <SectionComp>
-        <SectionItemComp header='woop'><Checkbox title='Title'/></SectionItemComp>
-        <SectionItemComp header='which one?'><RadioComp itemList={['paul','ist', 'online', 'casino', 'süchtig']}/></SectionItemComp>
-        <SectionItemComp alignment='right' header='Submit'><Button buttonStyle="btn--default--disabled" handleClick={() => console.log("you clicked me")}>Button</Button></SectionItemComp>
+        <SectionItemComp header='woop'>
+            <Checkbox title='Title'/>
+        </SectionItemComp>
+        <SectionItemComp header='which one?'>
+            <RadioComp itemList={['paul','ist', 'online', 'casino', 'süchtig']}/>
+        </SectionItemComp>
+        <SectionItemComp alignment='right' header='Submit'>
+            <Button buttonStyle="btn--default--disabled" handleClick={() => console.log("you clicked me")}>Button</Button>
+        </SectionItemComp>
     </SectionComp>
   </React.StrictMode>,
 

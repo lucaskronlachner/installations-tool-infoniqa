@@ -1,0 +1,58 @@
+{
+    "section header 1": {
+        "items": [
+        {
+            "header": "this is a dummy item",
+            "info": "optional info",
+            "component": {
+                "dropdown": {
+                    "list": ["this", "is", "a", "dummy", "dropdown"]
+                }
+            }
+        },
+        {
+            "header": "this is a dummy item",
+            "info": "optional info",
+            "component": {
+                "colorpicker": {}
+            }
+        },
+        {
+            "header": "this is a dummy item",
+            "info": "optional info",
+            "component": {
+                "radio": {
+                    "list": ["this", "is", "a", "dummy", "radio"]
+                }
+            }
+        }]
+    },
+    "section header 2": {
+        "items": [
+        {
+            "header": "this is a dummy item",
+            "info": "optional info",
+            "component": {
+                "dropdown": {
+                    "list": ["this", "is", "a", "dummy", "dropdown"]
+                }
+            }
+        },
+        {
+            "header": "this is a dummy item",
+            "info": "optional info",
+            "component": {
+                "colorpicker": {}
+            }
+        },
+        {
+            "header": "this is a dummy item",
+            "info": "optional info",
+            "component": {
+                "radio": {
+                    "list": ["this", "is", "a", "dummy", "radio"]
+                }
+            }
+        }]
+    }
+}
