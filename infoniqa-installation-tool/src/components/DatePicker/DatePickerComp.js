@@ -1,272 +1,174 @@
-import React, { useState } from 'react';
+
+import React from 'react';
+
 import './DatePickerStyle.css';
-import "../../App.css";
 
-const _numberOMonths = 12
-const _lengthYears = 20
-const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-const Date_PickerComp = (props) =>{
-
-        const [_currentMonth] = useState(props.Month)
-        const [_currentDate, setCurrentDate] = useState(props.usingDate)
-        const [_currentYear] = useState(props.Year)
-        const [_ident] = useState(props.ident)
-        const [_usedList, setUsedList] = useState(0)
-
-        const handle = (value)  =>{
-            setUsedList(_usedList + value)
-        }
-
-        return(
-        <div>
-        <div className='yearNMonth_Container'>
-                    <YearNMonthCarusel curYear={_currentYear} curMonth={_currentMonth} usedList={_usedList} handler={handle} currentDate={_currentDate}/>
-                <div className='month_Container'>
-                    <MonthComponent ident={_ident} usedList={_usedList} DayList={getDaysArray(_currentYear, _currentMonth)} MonthList={getMonthArray()} YearList={getYearArray(_currentYear)} handler={handle} currentDate={_currentDate} setCurrentDate={setCurrentDate}/>
-                </div>
-            </div>
-        </div>
-        )
-}
-
-const getDaysArray = (year, month) => {
-    const monthIndex = month - 1;
-    const date = new Date(year, monthIndex, 1);
-    const result = [];
-    while (date.getMonth() === monthIndex) {
-      result.push(date.getDate());
-      date.setDate(date.getDate() + 1);
-    }
-    return result;
-}
-
-const getMonthArray = () => {
-    const result = []
-    for(let i = 0; i < _numberOMonths; i++){
-        result.push(monthNames[i])
-    }
-    return result
-}
-
-const getYearArray = (Year) => {
-    const result = []
-    for (let index = 0; index < _lengthYears; index++) {
-        result.push(Year + index)
-    }
-    return result
-}
-
-class DayComponent extends React.Component{
-
-    constructor(props){
+class DatePickerComp extends React.Component {
+    constructor(props) {
         super(props)
-        this.setD = this.setDate.bind(this)
-        this._isSelected = props._isSelected
-        this.loaded = false
-        this.handleMethod = props.handler
-        this.currentD = props.currDate
+        this.ref_year_input = React.createRef()
+        this.ref_month_input = React.createRef()
+        this.ref_date_numbers = React.createRef()
+        this.ref_dates = React.createRef()
+        this.years_list = React.createRef()
+        this.ref_years_list = React.createRef()
+        this.datepicker = React.createRef()
+        this.selected_date = new Date()
+        this.date_picker_button = React.createRef()
+        this.onChange = props.onChange
     }
 
-    componentWillUnmount(){
-        this._isSelected = false
-    }
-    
-    UpdateStyle = () => {
-            let element = document.getElementById(`${this.props.ident}DayComp`)
-            if(this._isSelected){
-                element.style.backgroundColor = "var(--cornflower-blue)"
-            }else{
-                element.style.backgroundColor = "var(--snow-white)"
+    componentDidMount() {
+        const year_input = this.ref_year_input.current
+
+        year_input.onclick = () => {
+            let parent = year_input.parentElement
+            if (parent.classList.contains('open')) {
+                parent.classList.remove('open')
+            } else {
+                parent.classList.add('open')
             }
-    }
-
-    setDate = () => {
-        switch(this.props.usedList){
-            case 1:
-                this.props.currDate.setFullYear(this.props.DayNumber)
-                this.props.setCurrentDate(this.props.currDate)
-                console.log(this.currentD)
-            break
-            case 2:
-                this.props.currDate.setMonth(monthNames.indexOf(this.props.DayNumber))
-                this.props.setCurrentDate(this.props.currDate)
-                console.log(this.currentD)
-            break
-            default:
-                this.props.currDate.setDate(this.props.DayNumber)
-                this.props.setCurrentDate(this.props.currDate)
-                console.log(this.currentD)
-        }
-    }
-
-    HandleClick = () => {
-        let element = document.getElementById(`${this.props.ident}DayComp`)
-        if(!this.props.getChecked()){
-            this._isSelected = true
-            this.props.setChecked()
-            element.classList.add("dayComp_Clicked")
-            element.classList.remove("dayComp")
-            this.setD()
-
         }
 
-        if(this._isSelected && this.props.getChecked()){
-            this.props.setChecked()
-            this._isSelected = false
-            element.classList.remove("dayComp_Clicked")
-            element.classList.add("dayComp")
-        }
-        this.UpdateStyle()
+        const picker_button_texts = this.date_picker_button.current.getElementsByClassName('date-picker-title-days')
+        picker_button_texts[0].innerText = this.selected_date.getDate()
+        picker_button_texts[1].innerText = this.selected_date.getMonth() + 1
+        picker_button_texts[2].innerText = this.selected_date.getFullYear()
+
+        this.loadDateNumbers()
     }
+    loadDateNumbers() {
+        const date_strings = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        let selected_date = this.selected_date || new Date()
+        this.selected_date = selected_date
 
-    render(){
-        let counter = this.props.counter
-        counter += 1
-        this.breakStatment = (counter % this.props.listLength) === 0 ? <br className='breakLines'></br> : null
-        return(
-            <div className='DatePicker_container'>
-                <div id={`${this.props.ident}DayComp`} className='dayComp' onClick={this.HandleClick}>
-                    {
-                    this.props.DayNumber
-                    }
-                </div>
-                {this.breakStatment}
-            </div>
-        )
-    }
-}
+        const month_input = this.ref_month_input.current
+        const year_input = this.ref_year_input.current
+        const date_numbers = this.ref_date_numbers.current
+        const dates = this.ref_dates.current.getElementsByTagName('td')
 
-class MonthComponent extends React.Component{
-    constructor(props){
-        super(props)
-        this.check = this.check.bind(this)
-        this.getcheck = this.getcheck.bind(this)
-        this.setUsedList = this.setUsedList.bind(this)
-        this.state = {
-            hasChecked: false,
-        }
-        this.handlerMethod = props.handler
-    }
+        month_input.innerText = date_strings[selected_date.getMonth()]
+        year_input.innerText = selected_date.getFullYear()
 
 
-    componentWillUnmount(){
-        let element = document.getElementById(`${this.props.ident}DayComp`)
-        element.style.backgroundColor = "var(--snow-white)"
-        this.setState({
-            hasChecked: false
-        })
-    }
+        date_numbers.innerHTML = '<tr> <th>Mon</th> <th>Thu</th> <th>Wed</th> <th>Thi</th> <th>Fri</th> <th>Sat</th> <th>Sun</th> </tr>'
 
-    setUsedList(){
-        switch(this.props.usedList){
-            case 1:
-                this.props.YearList.forEach((element, index) => {
-                    element = `${element}`
-                    this.props.YearList[index] = element
-                });
-                this.UsingList = this.props.YearList
-            break
-            case 2:
-                this.props.MonthList.forEach((element, index) => {
-                    element = `${element}`
-                    this.props.MonthList[index] = element
-                });
-                this.UsingList = this.props.MonthList
-            break
-            default: 
-                this.props.DayList.forEach((element, index) => {
-                    element = `${element}`
-                    if(element.length === 1){
-                        element = `0${element}`
-                    }
-                    this.props.DayList[index] = element
-                });
-                this.UsingList = this.props.DayList
-        }
-    }
+        let daysInMonth = new Date(selected_date.getFullYear(), selected_date.getMonth() + 1, 0).getDate();
 
-    check(){
-        this.setState({hasChecked:!this.state.hasChecked})
-    }
+        let startIndex = (selected_date.getDay() + 6) % 7
+        let curr_row = document.createElement('tr')
 
-    getcheck(){
-        return this.state.hasChecked
-    }
 
-    render(){
-        this.setUsedList()
+        let days_fill_amount = daysInMonth + startIndex + ((7 - (daysInMonth + startIndex) % 7) % 7)
         
-        return(
-            <div className='datetime-dates-list'>
-                {
-                    this.UsingList.map((item, index) => (<DayComponent key={index + 0} counter={index} ident={`${this.props.ident}${index}`} DayNumber={item} listLength={5} setChecked={this.check} handler={this.handlerMethod} setCurrentDate={this.props.setCurrentDate} currDate={this.props.currentDate} usedList={this.props.usedList} getChecked={this.getcheck}/>))
-                }
-            </div>
-        )
-    }
-
-}
-
-class YearNMonthCarusel extends React.Component{
-    constructor(props){
-        super(props)
-        this.Month = props.curMonth
-        this.Year = props.curYear
-        this.currentDate = props.currentDate
-        this.handleMethod = props.handler
-        this.value = `${this.currentDate.getDay()}-${this.currentDate.getMonth()}-${this.currentDate.getFullYear()}`
-        this.state = {
-            _clicked : 0
-        }
-    }
-
-    componentDidMount = () => {
-        switch(this.state._clicked){
-            case 2:
-                this.value = `${this.currentDate.getMonth()}-${this.currentDate.getFullYear()}`
-            break
-            case 1:
-                this.value = `${this.currentDate.getFullYear()}`
-            break
-            default: 
-                this.value = `${this.currentDate.getDay()}-${this.currentDate.getMonth()}-${this.currentDate.getFullYear()}`
-                this.setState({
-                    _clicked: this.state._clicked + 1
-                })
-
-        }
-    } 
-
-    handleClick = (event) =>{
-        if(this.state._clicked <= 2){
-            this.setState({
-                _clicked: this.state._clicked + 1
-            })
-            this.handleMethod(this.state._clicked)
-
-            switch(this.state._clicked){
-                case 2:
-                    this.value = `${this.currentDate.getMonth()}-${this.currentDate.getFullYear()}`
-                break
-                case 1:
-                    this.value = `${this.currentDate.getFullYear()}`
-                break
-                default:this.value = `${this.currentDate.getDay()}-${this.currentDate.getMonth()}-${this.currentDate.getFullYear()}`
-                    
+        for (let i = 0; i <= days_fill_amount; i++) {
+            if ((i % 7 === 0 || i === days_fill_amount) && curr_row.hasChildNodes()) {
+                date_numbers.appendChild(curr_row)
+                curr_row = document.createElement('tr')
             }
+            let date_element = document.createElement('td')
+            date_element.onclick = () => {
+                for (const dateInner of dates) {
+                    dateInner.classList.remove('selected')
+                }
+                if (!date_element.classList.contains('selected')) {
+                    date_element.classList.add('selected')
+                    selected_date.setDate(parseInt(date_element.children[0].innerText))
+                    this.changeHandler(selected_date)
+                }
+            }
+            if (i >= startIndex && i < daysInMonth + startIndex) {
+                let inner_date_element = document.createElement('div')
+                inner_date_element.className = 'date-container'
+                inner_date_element.innerText = i - startIndex + 1
+                date_element.appendChild(inner_date_element)
+            }
+            curr_row.appendChild(date_element)
         }
     }
-   
-    render(){
-        return(
-            <div>
-                <label class='YearNMonth' onClick={(event) => this.handleClick(event)}>{this.value}</label>
+    reloadYearItems(amount) {
+        const years_list_items = this.ref_years_list.current.getElementsByClassName('year-list-item')
+        for (const years_list of years_list_items) {
+            years_list.innerText = parseInt(years_list.innerText) + amount
+        }
+    }
+    increaseYear() {
+        this.selected_date.setFullYear(this.selected_date.getFullYear() + 1)
+        this.loadDateNumbers()
+        this.reloadYearItems(1)
+    }
+    decreaseYear() {
+        this.selected_date.setFullYear(this.selected_date.getFullYear() - 1)
+        this.loadDateNumbers()
+        this.reloadYearItems(-1)
+    }
+
+    increaseMonth() {
+        this.selected_date.setMonth(this.selected_date.getMonth() + 1)
+        this.loadDateNumbers()
+    }
+    decreaseMonth() {
+        this.selected_date.setMonth(this.selected_date.getMonth() - 1)
+        this.loadDateNumbers()
+    }
+    toggleDatePicker() {
+        if(this.datepicker.current.classList.contains('open')){
+            this.datepicker.current.classList.remove('open')
+        }else {
+            this.datepicker.current.classList.add('open')
+        }
+    }
+    changeHandler(date) {
+        const picker_button_texts = this.date_picker_button.current.getElementsByClassName('date-picker-title-days')
+        picker_button_texts[0].innerText = date.getDate()
+        picker_button_texts[1].innerText = date.getMonth() + 1
+        picker_button_texts[2].innerText = date.getFullYear()
+        this.toggleDatePicker()
+        this.onChange(date)
+    }
+    render() {
+        return (
+            <div className='datepicker' ref={this.datepicker}>
+                <div className="datepicker-component">
+                    <div className="datepicker-months-years-container">
+                        <div onClick={() => { this.decreaseMonth() }} className="arrow-container"><i className="arrow left"></i></div>
+                        <div className="datepicker-inner-months-years">
+                            <p className="datepicker-month" ref={this.ref_month_input}>January</p>
+
+                            <div className="year-picker-holder">
+                                <p className="datepicker-year" ref={this.ref_year_input}>2022</p>
+                                <div className="year-picker-container">
+                                    <div className="year-picker-container-inner">
+                                        <div className="year-overlay"></div>
+                                        <ul className="years-list" ref={this.ref_years_list}>
+                                            <li className="year-list-item clickable-year" onClick={() => { this.decreaseYear() }}>2021</li>
+                                            <li className="year-list-item">2022</li>
+                                            <li className="year-list-item clickable-year" onClick={() => { this.increaseYear() }}>2023</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div onClick={() => { this.increaseMonth() }} className="arrow-container"><i className="arrow right"></i></div>
+                    </div>
+                    <table className="datepicker-dates" ref={this.ref_dates}>
+                        <tbody ref={this.ref_date_numbers}>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div className='date-picker-button' ref={this.date_picker_button} onClick={() => {this.toggleDatePicker()}}>
+                    <div><p className='date-picker-title-days'>01.</p></div>
+                    <div><p className='date-picker-title-days'>12.</p></div>
+                    <div><p className='date-picker-title-days'>2022</p></div>
+                </div>
+
             </div>
         )
     }
 }
 
-
-export default Date_PickerComp
+export default DatePickerComp

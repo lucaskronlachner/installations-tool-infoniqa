@@ -2,22 +2,24 @@ import * as React from "react";
 import "./TextInputStyle.css";
 import "../../App.css";
 
-export const TextInputField = (
-) => {
-
-    const handleChange = (event) => {
+class TextInputComp extends React.Component {
+    constructor(props) {
+        super(props)
+        this.title = props.title
+        this.onChange = props.onChange
     }
 
-    return (
-        <div>
-            <form>
-                <label htmlFor="app-input-field">{}</label>
-                <input type="text" className="inputField" placeholder={''} onChange={handleChange}></input>
-            </form>
-            
-        </div>
-    )
-    
+    changeHandler (element) {
+        this.onChange?.(element)
+    }
+
+    render() {
+        return (
+            <div className="text-input-comp">
+                <input onChange={(event)=>{this.changeHandler(event.target)}} type="text" className="inputField" placeholder={this.title ?? 'Title'}></input>
+            </div>
+        )
+    }
 }
 
-export default TextInputField;
+export default TextInputComp

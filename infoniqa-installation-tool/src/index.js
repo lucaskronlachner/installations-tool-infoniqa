@@ -4,6 +4,9 @@ import './index.css';
 import Checkbox from './components/Checkbox/CheckboxComp';
 import reportWebVitals from './reportWebVitals';
 import ColorPickerComp from './components/ColorPicker Component/ColorPickerComp';
+import FileUploadComp from './components/FileUpload Component/FileUploadComp';
+import SectionComp from './components/Section Component/SectionComp';
+import SectionItemComp from './components/Section Component/SectionItemComp';
 import DropDownComp from './components/DropDown Component/DropDownComp';
 import Button from './components/Button/ButtonComp';
 import TextInputField from './components/Text_Input/TextInputComp';
@@ -14,17 +17,41 @@ import DatePickerComp from './components/DatePicker/DatePickerComp';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Checkbox _ident={'1'} items={["Herbert", "Rahel", "Fort"]}/>
-    <ColorPickerComp pickerSize='150px'></ColorPickerComp>
-    <DropDownComp list={["moiga", "lol", "funny", "peepe", "yoo", "lasdjfölasjfd" ]}></DropDownComp>
-    <br></br>
-    <Button buttonStyle="btn--default--solid" buttonSize="btn--medium">Button</Button>
-    <br></br>
-    <TextInputField></TextInputField>
-    <RadioComp/>
-    <SwitchComp isOn={true}/>
-    <Checkbox _ident={'2'} items={["Herbert", "Rahel", "Fortnite"]}/>
-    <DatePickerComp Year={new Date().getFullYear()} Month={new Date().getMonth()} usingDate={new Date()} ident={'1'}/>
+    <SectionComp sectionHeader='Section Header 1'>
+        <SectionItemComp header='File upload 1' info='upload your file here if you want lol'>
+            <FileUploadComp></FileUploadComp>
+        </SectionItemComp>
+        <SectionItemComp header='File upload 2' info='upload your file here if you want lol'>
+            <FileUploadComp></FileUploadComp>
+        </SectionItemComp>
+        <SectionItemComp header='File upload 3' info='upload your file here if you want lol'>
+            <FileUploadComp></FileUploadComp>
+        </SectionItemComp>
+    </SectionComp>
+
+    <SectionComp>
+        <SectionItemComp header='Dropdown thing' info='make it drop'>
+            <DropDownComp list={["mxngodazi", "wer?", "hot gfrogt", "funny", "yoo", "lasdjfölasjfd" ]}></DropDownComp>
+        </SectionItemComp>
+        <SectionItemComp header='Color Picker' info='choose dat color'>
+            <ColorPickerComp pickerSize='150px'></ColorPickerComp>
+        </SectionItemComp>
+        <SectionItemComp header='Do you want cheese on your burger?'>
+            <SwitchComp isOn={true}/>
+        </SectionItemComp>
+        <SectionItemComp header='Anything you have to tell us?'>
+            <TextInputField></TextInputField>
+        </SectionItemComp>
+        <SectionItemComp header='Date?'>
+            <DatePickerComp/>
+        </SectionItemComp>
+    </SectionComp>
+    <SectionComp>
+        <SectionItemComp header='woop'><Checkbox title='Title'/></SectionItemComp>
+        <SectionItemComp header='which one?'><RadioComp itemList={['paul','ist', 'online', 'casino', 'süchtig']}/></SectionItemComp>
+        <SectionItemComp alignment='right' header='Submit'><Button buttonStyle="btn--default--disabled" handleClick={() => console.log("you clicked me")}>Button</Button></SectionItemComp>
+    </SectionComp>
+
   </React.StrictMode>,
 
   document.getElementById('root')

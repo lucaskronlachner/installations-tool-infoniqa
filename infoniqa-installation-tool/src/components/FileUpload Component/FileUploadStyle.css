@@ -1,0 +1,17 @@
+.selectFile {
+    box-sizing: border-box;
+    background-color: var(--snow-white);
+    text-overflow: ellipsis;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    border: 3px var(--oxford-blue) solid;
+    color: var(--oxford-blue);
+    cursor: pointer;
+    transition: background 0.1s linear;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.selectFile:hover {
+    background-color: var(--light-cornflower-blue);
+}

@@ -1,67 +1,43 @@
 import React from 'react';
 import './CheckboxStyle.css';
 
-export default function CheckboxComp(props) {
-
-    return (
-        <div className='container_Check'>
-            <CheckboxList ident={props._ident} checkList={[true, false, false]} nameList={props.items} />
-        </div>
-    )
-}
-
-class CheckboxList extends React.Component {
-
-    constructor(props) {
-        super(props)
-        this.state = {
-            _checkedList: props.checkList,
-            _nameList: props.nameList,
-            _ident : props.ident,
-        }
-    }
-
-    render() {
-        return (
-            <ul className='checkListContainer'>
-                {this.state._checkedList.map((item, index) => (<CheckButton key={index} keyVar={index} check={item} ident={this.state._ident} name={this.state._nameList[index]} />))}
-            </ul>
-        )
-    }
-
-}
-
 class CheckButton extends React.Component {
 
-    _IsChecked = false
-    _Key = 0
-
     constructor(props) {
         super(props)
-        this._Key = props.keyVar
-        this._IsChecked = props.check
+        this.title = props.title
+        this.isChecked = props.isChecked
+        this.onClick = props.onClick
+        this.ref_checkbox = React.createRef()
     }
-
-    hashCode = (s) => {
-        for (var i = 0, h = 0; i < s.length; i++)
-            h = Math.imul(31, h) + String(s).charCodeAt(i) | 0;
-        return h;
-    }
-    //Thank you Github Account: bryc
     
     handleClick = () => {
-        this._IsChecked = !this._IsChecked
-        let _checkbox = document.getElementById(`${this.props.ident}Box${this._Key}`)
-        _checkbox.checked = this._IsChecked
+        const check_box = this.ref_checkbox.current
+        if(check_box.classList.contains('checked')){
+            check_box.classList.remove('checked')
+            this.isChecked = false
+        }else{
+            this.isChecked = true
+            check_box.classList.add('checked')
+        }
+        this.onClick?.(check_box, this.isChecked)
     }
 
     render() {
         return (
-            <div className='container_Check'>
-                <input id={`${this.props.ident}Box${this._Key}`} type="checkbox" defaultChecked={this._IsChecked} />
-                <span className='boxClass' onClick={this.handleClick} />
-                <h1 className='DescriptionText'>{this.props.name}</h1>
+            <div className="checkbox-container" onClick={()=>{this.handleClick()}} ref={this.ref_checkbox}>
+                <div className="checkbox-component">
+                    <span className="checkbox-check-element">
+                        <div className="chech-svg-container">
+                            <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                            </svg>
+                        </div>
+                    </span>
+                    <span className='checkbox-title'>{this.title}</span>
+                </div>
             </div>
         )
     }
 }
+export default CheckButton

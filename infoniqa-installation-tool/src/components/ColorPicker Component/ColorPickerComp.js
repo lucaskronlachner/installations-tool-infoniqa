@@ -1,4 +1,5 @@
 import React from 'react'
+import TextInputField from '../Text_Input/TextInputComp'
 import './ColorPickerStyle.css'
 
 class ColorPickerComp extends React.Component {
@@ -10,7 +11,10 @@ class ColorPickerComp extends React.Component {
         this.inputR = React.createRef()
         this.inputG = React.createRef()
         this.inputB = React.createRef()
+        this.hexInputField = React.createRef()
+        this.color_canvas_background = React.createRef()
         this.pickerSize = props.pickerSize
+        this.onChangeColor = props.onChangeColor
     }
     componentDidMount() {
         let dragging = false
@@ -22,11 +26,29 @@ class ColorPickerComp extends React.Component {
         pickerCanvas.width = pickerCanvas.offsetWidth * 2
         pickerCanvas.height = pickerCanvas.offsetHeight * 2
 
+        this.selectColor.current.onclick = () => {
+            if(this.color_canvas_background.current.classList.contains('hidden')){
+                this.color_canvas_background.current.classList.replace('hidden', 'shown')
+            }else{
+                this.color_canvas_background.current.classList.replace('shown', 'hidden')
+            }
+            
+        }
+
         let pickerRGBChangeEvent = () => {
-            let rgb = [doc.inputR.current.value, doc.inputG.current.value, doc.inputB.current.value]
+            let rgb = [parseInt(doc.inputR.current.value), parseInt(doc.inputG.current.value), parseInt(doc.inputB.current.value)]
             setPickerColorFromRGB(rgb, doc)
+            this.onChangeColor?.()
         }
         this.inputR.current.onchange = pickerRGBChangeEvent
+        this.inputG.current.onchange = pickerRGBChangeEvent
+        this.inputB.current.onchange = pickerRGBChangeEvent
+
+        this.hexInputField.current.onChange = (event) => {console.log(event);}
+
+        this.inputR.current.value = 255
+        this.inputG.current.value = 255
+        this.inputB.current.value = 255
 
         let ctx = pickerCanvas.getContext('2d')
         function drawCircle() {
@@ -111,57 +133,56 @@ class ColorPickerComp extends React.Component {
             // Change r,g,b values from [0,1] to [0,255]
             return [255 * r, 255 * g, 255 * b];
         }
-        function rgb2Hsv(tempR, tempG, tempB) {
-            let r = tempR / 255, g = tempG /255, b = tempB / 255;
-            console.log("moiga");
-            var max = Math.max(r, g, b), min = Math.min(r, g, b);
-            var h, s, v = max;
-
-            var d = max - min;
-            s = max == 0 ? 0 : d / max;
-
-            if (max == min) {
-                h = 0; // achromatic
-            } else {
-                switch (max) {
-                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-                    case g: h = (b - r) / d + 2; break;
-                    case b: h = (r - g) / d + 4; break;
-                }
-
-                h /= 6;
-            }
-
-            return [h, s, v];
+        function rgb2Hsv (r, g, b) {
+            r /= 255;
+            g /= 255;
+            b /= 255;
+            const v = Math.max(r, g, b),
+                n = v - Math.min(r, g, b);
+            const h =
+                n === 0 ? 0 : n && v === r ? (g - b) / n : v === g ? 2 + (b - r) / n : 4 + (r - g) / n;
+            return [60 * (h < 0 ? h + 6 : h), v && (n / v) * 100, v * 100];
         }
         pickerCanvas.onmousedown = (e) => {
             setPickerColor(e.pageX, e.pageY, this.pickerIndicator.current, this)
             dragging = true
+            this.pickerIndicator.current.classList.add('picking')
         }
         pickerCanvas.onmousemove = (e) => {
-            if (dragging)
+            if (dragging){
                 setPickerColor(e.pageX, e.pageY, this.pickerIndicator.current, this)
+            }
         }
         document.onmouseup = (e) => {
+            this.pickerIndicator.current.classList.remove('picking')
             dragging = false
         }
         function setPickerColorFromRGB(rgb, doc) {
             let [hue, sat, val] = rgb2Hsv(rgb[0], rgb[1], rgb[2])
-            let [x, y] = polar2xy(sat * radiusPicker, hue)
-            console.log(x, y);
-            doc.pickerIndicator.current.style.left = `${x}px`
-            doc.pickerIndicator.current.style.top = `${y}px`
+            sat /= 100
+            hue = (hue / 180) * Math.PI
+            console.log(`hue,sat: (${hue}, ${sat})`);
+            let [y, x] = polar2xy(sat * radiusPicker, hue)
+            console.log(`xy: (${x}, ${y})`);
+            doc.pickerIndicator.current.style.left = `${-x / 2 + radiusPicker / 2 - boundsPicker.width / 2}px`
+            doc.pickerIndicator.current.style.top = `${-y / 2 + radiusPicker / 2 - boundsPicker.height / 2}px`
+            doc.pickerIndicator.current.style.backgroundColor = `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`
+            doc.selectColor.current.style.backgroundColor = `rgb(${rgb[0]},${rgb[1]},${rgb[2]}`
         }
-        function setPickerColor(pageX, pageY, pickerElement, doc) {
+        let boundsPicker = this.pickerIndicator.current.getBoundingClientRect()
+        function setPickerColor(pageX, pageY, pickerElement) {
             let bounds = pickerCanvas.getBoundingClientRect()
-            let boundsPicker = pickerElement.getBoundingClientRect()
 
             let x = pageX - window.scrollX - bounds.left
             let y = pageY - window.scrollY - bounds.top
             let p = ctx.getImageData(x * 2, y * 2, 1, 1).data;
             pickerElement.style.left = `${x - boundsPicker.width / 2}px`
             pickerElement.style.top = `${y - boundsPicker.height / 2}px`
-            pickerElement.style.backgroundColor = `rgba(${p[0]},${p[1]},${p[2]},${p[3]})`
+            pickerElement.style.backgroundColor = `rgb(${p[0]},${p[1]},${p[2]}`
+            doc.selectColor.current.style.backgroundColor = `rgb(${p[0]},${p[1]},${p[2]}`
+            this.hexInputField.current.innerText = `${rgbToHex(p[0], p[1], p[2])}`
+            
+            let [hue, sat, val] = rgb2Hsv(p[0], p[1], p[2])
             setRGBValues(p, doc)
         }
         function setRGBValues(rgb, doc) {
@@ -169,13 +190,30 @@ class ColorPickerComp extends React.Component {
             doc.inputG.current.value = rgb[1]
             doc.inputB.current.value = rgb[2]
         }
+        function componentToHex(c) {
+            var hex = c.toString(16);
+            return hex.length == 1 ? "0" + hex : hex;
+        }
+        function rgbToHex(r, g, b) {
+            return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+        }
+        function hexToRgb(hex){
+            var aRgbHex = hex.match(/.{1,2}/g);
+            return [parseInt(aRgbHex[0], 16), parseInt(aRgbHex[1], 16), parseInt(aRgbHex[2], 16)]
+        }
+        function onHexInputChange (element) {
+            console.log("based");
+            setPickerColorFromRGB(hexToRgb(element.innerText), this)
+            pickerRGBChangeEvent()
+        }
+        setPickerColorFromRGB([255,255,255], this)
     }
     render() {
         return (
             <div className='color-picker'>
                 <div className='color-canvas-relative-container'>
-                    <div className='color-canvas-background'>
-                        <div className='color-picker-popup hidden'>
+                    <div ref={this.color_canvas_background} className='color-canvas-background hidden'>
+                        <div className='color-picker-popup'>
                             <div className='color-canvas-container'>
                                 <div ref={this.pickerIndicator} className='color-picker-indicator'></div>
                                 <canvas ref={this.colorPickerCanvas} id="colorCanvas"></canvas>
@@ -187,13 +225,14 @@ class ColorPickerComp extends React.Component {
                                 </div>
                                 <div className='color-rgb-input'>
                                     <p>G</p>
-                                    <input type='number' ref={this.inputG} className='g-input'></input>
+                                    <input type='number' ref={this.inputG} className='g-input' max={255}></input>
                                 </div>
                                 <div className='color-rgb-input'>
                                     <p>B</p>
-                                    <input type='number' ref={this.inputB} className='b-input'></input>
+                                    <input type='number' ref={this.inputB} className='b-input' max={255}></input>
                                 </div>
                             </div>
+                            <TextInputField ref={this.hexInputField} title='#hex'></TextInputField>
                         </div>
                     </div>
                 </div>

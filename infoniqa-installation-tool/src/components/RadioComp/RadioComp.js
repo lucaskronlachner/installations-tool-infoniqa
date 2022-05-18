@@ -1,66 +1,34 @@
 import * as React from 'react';
 import './RadioStyle.css';
 import "../../App.css";
+import CheckButton from '../Checkbox/CheckboxComp';
 
 
- 
-class RadioComp extends React.Component{
-  state = {
-    value : "second",
-    value2 : "third"
-  }
 
-  onChange = e => {
-    this.setState({[e.target.name] : e.target.value})
-  }
+class RadioComp extends React.Component {
 
-  render(){
-    const {value, value2} = this.state;
-    return(
-      <form>
-        <div className="body">
-        <label>
-          First
-          <input type="radio"
-            value="first"
-            name="value"
-            checked={value === "first"}
-            onChange={this.onChange}
-          />
-        </label>
-        <label>
-          Second
-          <input type="radio"
-            value="second"
-            name="value"
-            checked={value === "second"}
-            onChange={this.onChange}
-          />
-        </label>
-        <br/>
-        <br/>
-        <label>
-          Third
-          <input type="radio"
-            value="third"
-            name="value2"
-            checked={value2 === "third"}
-            onChange={this.onChange}
-          />
-        </label>
-        <label>
-          Fourth
-          <input type="radio"
-            value="fourth"
-            name="value2"
-            checked={value2 === "fourth"}
-            onChange={this.onChange}
-          />
-        </label>
-        </div>
-      </form>
+    constructor(props) {
+        super(props)
+        this.itemList = props.itemList
+        this.selectedItemIndex = props.selectedItemIndex
+        this.selectedItem = this.itemList[this.selectedItemIndex]
+        this.ref_radiocomp = React.createRef()
+    }
 
-    )
-  }
+    handleClickCheckButton(element) {
+        const checkBoxes = this.ref_radiocomp.current.getElementsByClassName('checkbox-container')
+        for (const checkBox of checkBoxes) {
+            checkBox.classList.remove('checked')
+        }
+        element.classList.add('checked')
+    }
+
+    render() {
+        return (
+            <div className='radiocomp' ref={this.ref_radiocomp}>
+                {this.itemList.map(x => (<CheckButton onClick={(element)=>this.handleClickCheckButton(element)} title={x}></CheckButton>))}
+            </div>
+        )
+    }
 }
 export default RadioComp;
