@@ -1,5 +1,8 @@
+
 import React from 'react';
+
 import './DatePickerStyle.css';
+
 
 class DatePickerComp extends React.Component {
     constructor(props) {
@@ -48,6 +51,7 @@ class DatePickerComp extends React.Component {
         month_input.innerText = date_strings[selected_date.getMonth()]
         year_input.innerText = selected_date.getFullYear()
 
+
         date_numbers.innerHTML = '<tr> <th>Mon</th> <th>Thu</th> <th>Wed</th> <th>Thi</th> <th>Fri</th> <th>Sat</th> <th>Sun</th> </tr>'
 
         let daysInMonth = new Date(selected_date.getFullYear(), selected_date.getMonth() + 1, 0).getDate();
@@ -55,8 +59,9 @@ class DatePickerComp extends React.Component {
         let startIndex = (selected_date.getDay() + 6) % 7
         let curr_row = document.createElement('tr')
 
-        let days_fill_amount = daysInMonth + startIndex + ((7 - (daysInMonth + startIndex) % 7) % 7)
 
+        let days_fill_amount = daysInMonth + startIndex + ((7 - (daysInMonth + startIndex) % 7) % 7)
+        
         for (let i = 0; i <= days_fill_amount; i++) {
             if ((i % 7 === 0 || i === days_fill_amount) && curr_row.hasChildNodes()) {
                 date_numbers.appendChild(curr_row)
@@ -160,6 +165,7 @@ class DatePickerComp extends React.Component {
                     <div><p className='date-picker-title-days'>12.</p></div>
                     <div><p className='date-picker-title-days'>2022</p></div>
                 </div>
+
             </div>
         )
     }

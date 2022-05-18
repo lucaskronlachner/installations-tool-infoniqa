@@ -60,6 +60,7 @@ ReactDOM.render(
             <Button buttonStyle="btn--default--disabled" handleClick={() => console.log("you clicked me")}>Button</Button>
         </SectionItemComp>
     </SectionComp>
+
   </React.StrictMode>,
 
   document.getElementById('root')
