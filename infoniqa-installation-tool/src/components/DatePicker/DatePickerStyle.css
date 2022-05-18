@@ -48,6 +48,7 @@
     box-shadow: 0px 0px 22px -5px rgba(0,0,0,0.23);
     position: absolute;
     top: -26em;
+
 }
 .datepicker-component .datepicker-months-years-container {
     display: flex;
@@ -156,6 +157,7 @@
     align-items: center;
     height: 50px;
 }
+
 .datepicker-component .datepicker-dates tr:nth-child(odd) {
     background-color: #f8f3f3;
 }
@@ -167,6 +169,7 @@
     height: 100%;
     border-left: 1px rgb(224, 224, 224) solid;
 }
+
 .datepicker-component .datepicker-dates td:first-child, th:first-child {
     border: none;
 }

@@ -51,6 +51,7 @@ ReactDOM.render(
         <SectionItemComp header='which one?'><RadioComp itemList={['paul','ist', 'online', 'casino', 'süchtig']}/></SectionItemComp>
         <SectionItemComp alignment='right' header='Submit'><Button buttonStyle="btn--default--disabled" handleClick={() => console.log("you clicked me")}>Button</Button></SectionItemComp>
     </SectionComp>
+
   </React.StrictMode>,
 
   document.getElementById('root')
