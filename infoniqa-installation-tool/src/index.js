@@ -24,7 +24,7 @@ ReactDOM.render(
     <RadioComp/>
     <SwitchComp isOn={true}/>
     <Checkbox _ident={'2'} items={["Herbert", "Rahel", "Fortnite"]}/>
-    <DatePickerComp Year={2022} Month={3} ident={'1'}/>
+    <DatePickerComp Year={new Date().getFullYear()} Month={new Date().getMonth()} usingDate={new Date()} ident={'1'}/>
   </React.StrictMode>,
 
   document.getElementById('root')
