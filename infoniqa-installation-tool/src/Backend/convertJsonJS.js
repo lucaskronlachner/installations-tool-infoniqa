@@ -73,15 +73,15 @@ class ConvPart extends React.Component{
                 return item[_comp_identifier][Object.keys(item[_comp_identifier])[0]] !== {} ? <ColorPickerComp {...item[_comp_identifier][Object.keys(item[_comp_identifier])[0]]}></ColorPickerComp> : <ColorPickerComp></ColorPickerComp>
             case "checkbox":
                 return item[_comp_identifier][Object.keys(item[_comp_identifier])[0]] !== {} ? <Checkbox {...item[_comp_identifier][Object.keys(item[_comp_identifier])[0]]}></Checkbox> : <Checkbox></Checkbox>
-            case "switchComp":
+            case "switch":
                 return item[_comp_identifier][Object.keys(item[_comp_identifier])[0]] !== {} ? <SwitchComp {...item[_comp_identifier][Object.keys(item[_comp_identifier])[0]]}></SwitchComp> : <SwitchComp></SwitchComp>
-            case "buttonComp":
+            case "button":
                 return item[_comp_identifier][Object.keys(item[_comp_identifier])[0]] !== {} ? <Button {...item[_comp_identifier][Object.keys(item[_comp_identifier])[0]]}></Button> : <Button></Button>
-            case "fileUpComp":
+            case "fileUp":
                 return <FileUploadComp></FileUploadComp>
-            case "datePickerComp":
+            case "datePicker":
                 return <DatePickerComp></DatePickerComp>
-            case "textInputComp":
+            case "textIn":
                 return <TextInputField></TextInputField>
             default:
                 throw Error("No such Component")
