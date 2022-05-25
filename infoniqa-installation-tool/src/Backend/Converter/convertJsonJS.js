@@ -19,7 +19,7 @@ class Converter extends React.Component{
     }
 
     setup(){
-        this._data = require(`../json/${this._fUrl}`)
+        this._data = require(`../../json/${this._fUrl}`)
     }
 
     sect_Factory(sections){ 
