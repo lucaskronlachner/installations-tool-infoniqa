@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkbox, SectionComp, SectionItemComp, FileUploadComp, DropDownComp, ColorPickerComp, TextInputField, SwitchComp, DatePickerComp, RadioComp, Button} from '../components/modules';
+import { Checkbox, SectionComp, SectionItemComp, FileUploadComp, DropDownComp, ColorPickerComp, TextInputField, SwitchComp, DatePickerComp, RadioComp, Button} from '../../components/modules';
 
 
 const _items_identifier = "items"
@@ -19,7 +19,7 @@ class Converter extends React.Component{
     }
 
     setup(){
-        this._data = require(`../json/${this._fUrl}`)
+        this._data = require(`../../json/${this._fUrl}`)
     }
 
     sect_Factory(sections){ 
