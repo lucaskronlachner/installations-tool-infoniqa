@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { Checkbox, SectionComp, SectionItemComp, FileUploadComp, DropDownComp, ColorPickerComp, TextInputField, SwitchComp, DatePickerComp, RadioComp, Button} from './components/modules';
-import ConverterComp from './Backend/convertJsonJS';
+import ConverterComp from './Backend/Converter/convertJsonJS';
 import reportWebVitals from './reportWebVitals';
 
 
