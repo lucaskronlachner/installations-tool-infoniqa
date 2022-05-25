@@ -22,7 +22,7 @@
             "info": "optional info",
             "component": {
                 "radio": {
-                    "list": ["this", "is", "a", "dummy", "radio"]
+                    "itemList": ["this", "is", "a", "dummy", "radio"]
                 }
             }
         }]
@@ -42,7 +42,9 @@
             "header": "this is a dummy item",
             "info": "optional info",
             "component": {
-                "colorpicker": {}
+                "colorpicker": {
+                    "pickerSize": "150px"
+                }
             }
         },
         {
@@ -50,7 +52,7 @@
             "info": "optional info",
             "component": {
                 "radio": {
-                    "list": ["this", "is", "a", "dummy", "radio"]
+                    "itemList": ["this", "is", "a", "dummy", "radio"]
                 }
             }
         }]
