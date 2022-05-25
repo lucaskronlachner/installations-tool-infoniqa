@@ -1,23 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Checkbox from './components/Checkbox/CheckboxComp';
+import { Checkbox, SectionComp, SectionItemComp, FileUploadComp, DropDownComp, ColorPickerComp, TextInputField, SwitchComp, DatePickerComp, RadioComp, Button} from './components/modules';
+import ConverterComp from './Backend/convertJsonJS';
 import reportWebVitals from './reportWebVitals';
-import ColorPickerComp from './components/ColorPicker Component/ColorPickerComp';
-import FileUploadComp from './components/FileUpload Component/FileUploadComp';
-import SectionComp from './components/Section Component/SectionComp';
-import SectionItemComp from './components/Section Component/SectionItemComp';
-import DropDownComp from './components/DropDown Component/DropDownComp';
-import Button from './components/Button/ButtonComp';
-import TextInputField from './components/Text_Input/TextInputComp';
-import SwitchComp from './components/SwitchComp/SwitchComp';
-import RadioComp from './components/RadioComp/RadioComp';
-import DatePickerComp from './components/DatePicker/DatePickerComp';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <SectionComp sectionHeader='Section Header 1'>
+    {/* <SectionComp sectionHeader='Section Header 1'>
         <SectionItemComp header='File upload 1' info='upload your file here if you want lol'>
             <FileUploadComp></FileUploadComp>
         </SectionItemComp>
@@ -59,7 +50,8 @@ ReactDOM.render(
         <SectionItemComp alignment='right' header='Submit'>
             <Button buttonStyle="btn--default--disabled" handleClick={() => console.log("you clicked me")}>Button</Button>
         </SectionItemComp>
-    </SectionComp>
+    </SectionComp> */}
+    <ConverterComp file_url_json={'template_site.json'}></ConverterComp>
 
   </React.StrictMode>,
 
