@@ -35,7 +35,7 @@ class DropDownComp extends React.Component {
                     <i class="arrow down"></i>
                 </div>
                 <ul className="dropdown-elements" aria-label="submenu">
-                    {this.state._list.map((item) => {return (<li><div>{item}</div></li>)})}
+                    {this.state._list.map((item,index) => {return (<li key={index}><div>{item}</div></li>)})}
                 </ul>
             </div>
         )

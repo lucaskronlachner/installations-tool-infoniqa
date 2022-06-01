@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "@babel/plugin-proposal-export-default-from": "^7.17.12"
+  },
+  "dependencies": {
+    "jquery": "^3.6.0",
+    "node": "^17.7.2"
+  }
+}

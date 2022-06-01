@@ -26,7 +26,7 @@ class RadioComp extends React.Component {
     render() {
         return (
             <div className='radiocomp' ref={this.ref_radiocomp}>
-                {this.itemList.map(x => (<CheckButton onClick={(element)=>this.handleClickCheckButton(element)} title={x}></CheckButton>))}
+                {this.itemList.map((x,index) => (<CheckButton key={index} onClick={(element)=>this.handleClickCheckButton(element)} title={x}></CheckButton>))}
             </div>
         )
     }
