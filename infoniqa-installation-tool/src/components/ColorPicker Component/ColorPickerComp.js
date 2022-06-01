@@ -14,7 +14,7 @@ class ColorPickerComp extends React.Component {
         this.hexInputField = React.createRef()
         this.color_canvas_background = React.createRef()
         this.ref_color_picker_title_hex = React.createRef()
-        this.pickerSize = props.pickerSize
+        this.pickerSize = props.pickerSize ?? '150px'
         this.onChangeColor = props.onChangeColor
     }
     toggle(implicitToggle) {
@@ -30,7 +30,7 @@ class ColorPickerComp extends React.Component {
         let pickerCanvas = this.colorPickerCanvas.current
         let doc = this
         let radiusPicker
-        pickerCanvas.style.width = this.pickerSize
+        pickerCanvas.style.width = this.pickerSize 
         pickerCanvas.style.height = this.pickerSize
         pickerCanvas.width = pickerCanvas.offsetWidth * 2
         pickerCanvas.height = pickerCanvas.offsetHeight * 2
@@ -170,9 +170,7 @@ class ColorPickerComp extends React.Component {
             let [hue, sat, val] = rgb2Hsv(rgb[0], rgb[1], rgb[2])
             sat /= 100
             hue = (hue / 180) * Math.PI
-            console.log(`hue,sat: (${hue}, ${sat})`);
             let [y, x] = polar2xy(sat * radiusPicker, hue)
-            console.log(`xy: (${x}, ${y})`);
             doc.pickerIndicator.current.style.left = `${-x / 2 + radiusPicker / 2 - boundsPicker.width / 2}px`
             doc.pickerIndicator.current.style.top = `${-y / 2 + radiusPicker / 2 - boundsPicker.height / 2}px`
             doc.pickerIndicator.current.style.backgroundColor = `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`
