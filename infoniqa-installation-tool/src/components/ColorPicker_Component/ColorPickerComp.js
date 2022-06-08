@@ -20,7 +20,12 @@ class ColorPickerComp extends React.Component {
     toggle(implicitToggle) {
         let toggle = implicitToggle ?? this.color_canvas_background.current.classList.contains('hidden')
         if(toggle){
+            this.color_canvas_background.current.classList.remove('bottom')
+            let bounds = this.color_canvas_background.current.getBoundingClientRect()
             this.color_canvas_background.current.classList.replace('hidden', 'shown')
+            if(bounds.top < 0){
+                this.color_canvas_background.current.classList.add('bottom')
+            }
         }else {
             this.color_canvas_background.current.classList.replace('shown', 'hidden')
         }
@@ -36,12 +41,7 @@ class ColorPickerComp extends React.Component {
         pickerCanvas.height = pickerCanvas.offsetHeight * 2
 
         this.selectColor.current.onclick = () => {
-            if(this.color_canvas_background.current.classList.contains('hidden')){
-                this.color_canvas_background.current.classList.replace('hidden', 'shown')
-            }else{
-                this.color_canvas_background.current.classList.replace('shown', 'hidden')
-            }
-            
+            this.toggle()
         }
 
         let pickerRGBChangeEvent = () => {
@@ -205,14 +205,19 @@ class ColorPickerComp extends React.Component {
             return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
         }
         function hexToRgb(hex){
-            let aRgbHex = hex.replace('#', '').match(/.{1,2}/g);
-            let r = parseInt(aRgbHex[0], 16)
-            let g = parseInt(aRgbHex[1], 16)
-            let b = parseInt(aRgbHex[2], 16)
-            return [r ?? 0, g ?? 0, b ?? 0]
+            try{
+                let aRgbHex = hex.replace('#', '').match(/.{1,2}/g);
+                let r = isNaN(parseInt(aRgbHex[0], 16)) ? 255 : parseInt(aRgbHex[0], 16)
+                let g = isNaN(parseInt(aRgbHex[1], 16)) ? 255 : parseInt(aRgbHex[1], 16)
+                let b = isNaN(parseInt(aRgbHex[2], 16)) ? 255 : parseInt(aRgbHex[2], 16)
+                return [r ?? 0, g ?? 0, b ?? 0]
+            } catch(e){
+                return [255,255,255]
+            }
         }
         function onHexInputChange (element) {
             let rgb = hexToRgb(element.value)
+            doc.ref_color_picker_title_hex.current.innerText = element.value
             setRGBValues(rgb, doc)
             pickerRGBChangeEvent()
         }
