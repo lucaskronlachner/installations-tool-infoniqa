@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { Checkbox, SectionComp, SectionItemComp, FileUploadComp, DropDownComp, ColorPickerComp, TextInputField, SwitchComp, DatePickerComp, RadioComp, Button, DropDownMutliComp} from './components/modules';
 import ConverterComp from './Backend/Converter/convertJsonJS.js';
 import reportWebVitals from './reportWebVitals';
 
 
 ReactDOM.render(
   <React.StrictMode>
+      <DropDownMutliComp list={['old fella', 'super shef']}></DropDownMutliComp>
     {/* <SectionComp sectionHeader='Section Header 1'>
         <SectionItemComp header='File upload 1' info='upload your file here if you want lol'>
             <FileUploadComp></FileUploadComp>

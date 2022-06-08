@@ -1,9 +1,10 @@
 :root {
-    --snow-white: #FFFAFA;
-    --cornflower-blue: #8390FA;
-    --light-cornflower-blue: #e6e8ff;
-    --oxford-blue: #132059;
-    --red-orange: #FF4C0C;
+    --snow-white: #ffffff;
+    --cornflower-blue: #1681FB;
+    --light-cornflower-blue: #bddafa;
+    --oxford-blue: #063F7A;
+    --primary-oxford-blue: #006DA8;
+    --red-orange: #CC0000;
 }
 body {
     margin: 0;

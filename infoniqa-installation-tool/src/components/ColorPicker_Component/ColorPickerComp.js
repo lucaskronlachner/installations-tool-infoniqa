@@ -14,13 +14,18 @@ class ColorPickerComp extends React.Component {
         this.hexInputField = React.createRef()
         this.color_canvas_background = React.createRef()
         this.ref_color_picker_title_hex = React.createRef()
-        this.pickerSize = props.pickerSize
+        this.pickerSize = props.pickerSize ?? '150px'
         this.onChangeColor = props.onChangeColor
     }
     toggle(implicitToggle) {
         let toggle = implicitToggle ?? this.color_canvas_background.current.classList.contains('hidden')
         if(toggle){
+            this.color_canvas_background.current.classList.remove('bottom')
+            let bounds = this.color_canvas_background.current.getBoundingClientRect()
             this.color_canvas_background.current.classList.replace('hidden', 'shown')
+            if(bounds.top < 0){
+                this.color_canvas_background.current.classList.add('bottom')
+            }
         }else {
             this.color_canvas_background.current.classList.replace('shown', 'hidden')
         }
@@ -30,18 +35,13 @@ class ColorPickerComp extends React.Component {
         let pickerCanvas = this.colorPickerCanvas.current
         let doc = this
         let radiusPicker
-        pickerCanvas.style.width = this.pickerSize
+        pickerCanvas.style.width = this.pickerSize 
         pickerCanvas.style.height = this.pickerSize
         pickerCanvas.width = pickerCanvas.offsetWidth * 2
         pickerCanvas.height = pickerCanvas.offsetHeight * 2
 
         this.selectColor.current.onclick = () => {
-            if(this.color_canvas_background.current.classList.contains('hidden')){
-                this.color_canvas_background.current.classList.replace('hidden', 'shown')
-            }else{
-                this.color_canvas_background.current.classList.replace('shown', 'hidden')
-            }
-            
+            this.toggle()
         }
 
         let pickerRGBChangeEvent = () => {
@@ -170,9 +170,7 @@ class ColorPickerComp extends React.Component {
             let [hue, sat, val] = rgb2Hsv(rgb[0], rgb[1], rgb[2])
             sat /= 100
             hue = (hue / 180) * Math.PI
-            console.log(`hue,sat: (${hue}, ${sat})`);
             let [y, x] = polar2xy(sat * radiusPicker, hue)
-            console.log(`xy: (${x}, ${y})`);
             doc.pickerIndicator.current.style.left = `${-x / 2 + radiusPicker / 2 - boundsPicker.width / 2}px`
             doc.pickerIndicator.current.style.top = `${-y / 2 + radiusPicker / 2 - boundsPicker.height / 2}px`
             doc.pickerIndicator.current.style.backgroundColor = `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`
@@ -207,14 +205,19 @@ class ColorPickerComp extends React.Component {
             return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
         }
         function hexToRgb(hex){
-            let aRgbHex = hex.replace('#', '').match(/.{1,2}/g);
-            let r = parseInt(aRgbHex[0], 16)
-            let g = parseInt(aRgbHex[1], 16)
-            let b = parseInt(aRgbHex[2], 16)
-            return [r ?? 0, g ?? 0, b ?? 0]
+            try{
+                let aRgbHex = hex.replace('#', '').match(/.{1,2}/g);
+                let r = isNaN(parseInt(aRgbHex[0], 16)) ? 255 : parseInt(aRgbHex[0], 16)
+                let g = isNaN(parseInt(aRgbHex[1], 16)) ? 255 : parseInt(aRgbHex[1], 16)
+                let b = isNaN(parseInt(aRgbHex[2], 16)) ? 255 : parseInt(aRgbHex[2], 16)
+                return [r ?? 0, g ?? 0, b ?? 0]
+            } catch(e){
+                return [255,255,255]
+            }
         }
         function onHexInputChange (element) {
             let rgb = hexToRgb(element.value)
+            doc.ref_color_picker_title_hex.current.innerText = element.value
             setRGBValues(rgb, doc)
             pickerRGBChangeEvent()
         }

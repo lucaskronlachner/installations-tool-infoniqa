@@ -113,6 +113,7 @@
     border-right: none;
 }
 .color-canvas-background {
+    z-index: 10;
     transition: all 0.2s linear;
 }
 .color-canvas-background.hidden {
@@ -124,6 +125,10 @@
     opacity: 1;
     transform: translateY(0px);
     pointer-events: all;
+}
+.color-canvas-background.bottom {
+    bottom: unset;
+    top: 20px;
 }
 .color-canvas-container .color-picker-indicator {
     display: flex;
