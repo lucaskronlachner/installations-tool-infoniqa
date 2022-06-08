@@ -1,7 +1,7 @@
 import React from 'react'
-import './DropDownStyle.css'
+import './DropDownInputStyle.css'
 
-class DropDownComp extends React.Component {
+class DropDownInputComp extends React.Component {
     constructor(props) {
         super(props)
         this.dropdownContainer = React.createRef()
@@ -21,17 +21,29 @@ class DropDownComp extends React.Component {
             let dropdown_items = element.getElementsByTagName("li")
             for (const item of dropdown_items) {
                 item.onclick = () => {
-                    element.getElementsByClassName('dropdown-header-value-text')[0].innerHTML = item.innerText;
+                    element.getElementsByClassName('dropdown-header-value-text')[0].value = item.innerText;
                     this.state.value = item.innerText
                 }
             }
+        }
+        element.onkeyup = event => {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                element.classList.remove("dropdown-extended")
+                this.state.value = element.value
+                window.getSelection().removeAllRanges();
+            }
+        }
+        element.onfocusout = () => {
+            element.classList.remove("dropdown-extended")
+            this.state.value = element.value
         }
     }
     render() {
         return (
             <div ref={this.dropdownContainer} className="dropdown">
-                <div className="dropdown-header">
-                    <div className="dropdown-header-value-text">{this.state.value}</div>
+                <div className="dropdown-header input">
+                    <input className="dropdown-header-value-text" placeholder={this.state.value}></input>
                     <i class="arrow down"></i>
                 </div>
                 <ul className="dropdown-elements" aria-label="submenu">
@@ -41,4 +53,4 @@ class DropDownComp extends React.Component {
         )
     }
 }
-export default DropDownComp;
+export default DropDownInputComp;

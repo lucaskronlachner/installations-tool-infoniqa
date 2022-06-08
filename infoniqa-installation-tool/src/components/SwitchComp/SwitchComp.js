@@ -5,7 +5,9 @@ import "../../App.css";
 class SwitchComp extends React.Component {
     constructor(props){
         super(props)
-        this.switchState = (props.isOn) ? 'on' : 'off'
+        this.state = {
+            value: props.isOn
+        }
         this.switchElement = React.createRef()
     }
     componentDidMount() {
@@ -15,8 +17,10 @@ class SwitchComp extends React.Component {
             element.getElementsByClassName("switch-dot-container")[0].style.width = null
             if(element.classList.contains("on")){
                 element.classList.replace('on', 'off')
+                this.state.value = false
             }else if(element.classList.contains("off")){
                 element.classList.replace('off', 'on')
+                this.state.value = true
             }
         }
         element.onmousedown = () => {
@@ -27,7 +31,7 @@ class SwitchComp extends React.Component {
     render(){
         return (
             <div className='switch-comp'>
-                <div ref={this.switchElement} className={`switch ${this.switchState}`}>
+                <div ref={this.switchElement} className={`switch ${(this.state.value) ? 'on' : 'off'}`}>
                     <div className="switch-dot-container">
                         <div className="switch-dot"></div>
                     </div>

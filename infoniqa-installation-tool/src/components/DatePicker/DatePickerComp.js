@@ -14,7 +14,9 @@ class DatePickerComp extends React.Component {
         this.years_list = React.createRef()
         this.ref_years_list = React.createRef()
         this.datepicker = React.createRef()
-        this.selected_date = new Date()
+        this.state = {
+            value: new Date()
+        }
         this.date_picker_button = React.createRef()
         this.onChange = props.onChange
     }
@@ -32,16 +34,16 @@ class DatePickerComp extends React.Component {
         }
 
         const picker_button_texts = this.date_picker_button.current.getElementsByClassName('date-picker-title-days')
-        picker_button_texts[0].innerText = this.selected_date.getDate()
-        picker_button_texts[1].innerText = this.selected_date.getMonth() + 1
-        picker_button_texts[2].innerText = this.selected_date.getFullYear()
+        picker_button_texts[0].innerText = this.state.value.getDate()
+        picker_button_texts[1].innerText = this.state.value.getMonth() + 1
+        picker_button_texts[2].innerText = this.state.value.getFullYear()
 
         this.loadDateNumbers()
     }
     loadDateNumbers() {
         const date_strings = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-        let selected_date = this.selected_date || new Date()
-        this.selected_date = selected_date
+        let selected_date = this.state.value || new Date()
+        this.state.value = selected_date
 
         const month_input = this.ref_month_input.current
         const year_input = this.ref_year_input.current
@@ -94,22 +96,22 @@ class DatePickerComp extends React.Component {
         }
     }
     increaseYear() {
-        this.selected_date.setFullYear(this.selected_date.getFullYear() + 1)
+        this.state.value.setFullYear(this.state.value.getFullYear() + 1)
         this.loadDateNumbers()
         this.reloadYearItems(1)
     }
     decreaseYear() {
-        this.selected_date.setFullYear(this.selected_date.getFullYear() - 1)
+        this.state.value.setFullYear(this.state.value.getFullYear() - 1)
         this.loadDateNumbers()
         this.reloadYearItems(-1)
     }
 
     increaseMonth() {
-        this.selected_date.setMonth(this.selected_date.getMonth() + 1)
+        this.state.value.setMonth(this.state.value.getMonth() + 1)
         this.loadDateNumbers()
     }
     decreaseMonth() {
-        this.selected_date.setMonth(this.selected_date.getMonth() - 1)
+        this.state.value.setMonth(this.state.value.getMonth() - 1)
         this.loadDateNumbers()
     }
     toggleDatePicker() {
