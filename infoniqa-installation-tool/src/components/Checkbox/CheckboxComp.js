@@ -6,7 +6,9 @@ class CheckButton extends React.Component {
     constructor(props) {
         super(props)
         this.title = props.title
-        this.isChecked = props.isChecked
+        this.state = {
+            value: props.isChecked
+        }
         this.onClick = props.onClick
         this.ref_checkbox = React.createRef()
     }
@@ -15,12 +17,12 @@ class CheckButton extends React.Component {
         const check_box = this.ref_checkbox.current
         if(check_box.classList.contains('checked')){
             check_box.classList.remove('checked')
-            this.isChecked = false
+            this.state.value = false
         }else{
-            this.isChecked = true
+            this.state.value = true
             check_box.classList.add('checked')
         }
-        this.onClick?.(check_box, this.isChecked)
+        this.onClick?.(check_box, this.state.value)
     }
 
     render() {

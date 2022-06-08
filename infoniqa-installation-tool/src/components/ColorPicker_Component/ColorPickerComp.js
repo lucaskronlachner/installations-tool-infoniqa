@@ -16,6 +16,9 @@ class ColorPickerComp extends React.Component {
         this.ref_color_picker_title_hex = React.createRef()
         this.pickerSize = props.pickerSize ?? '150px'
         this.onChangeColor = props.onChangeColor
+        this.state = {
+            value: '#ffffff'
+        }
     }
     toggle(implicitToggle) {
         let toggle = implicitToggle ?? this.color_canvas_background.current.classList.contains('hidden')
@@ -46,6 +49,7 @@ class ColorPickerComp extends React.Component {
 
         let pickerRGBChangeEvent = () => {
             let rgb = [parseInt(doc.inputR.current.value), parseInt(doc.inputG.current.value), parseInt(doc.inputB.current.value)]
+            this.state.value = rgbToHex(rgb[0], rgb[1], rgb[2])
             setPickerColorFromRGB(rgb, doc)
             this.onChangeColor?.()
         }
@@ -193,6 +197,7 @@ class ColorPickerComp extends React.Component {
             setRGBValues(p, doc)
         }
         function setRGBValues(rgb, doc) {
+            this.state.value = rgbToHex(rgb[0], rgb[1], rgb[2])
             doc.inputR.current.value = rgb[0]
             doc.inputG.current.value = rgb[1]
             doc.inputB.current.value = rgb[2]

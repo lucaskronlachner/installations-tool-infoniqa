@@ -10,23 +10,27 @@ class RadioComp extends React.Component {
     constructor(props) {
         super(props)
         this.itemList = props.itemList
-        this.selectedItemIndex = props.selectedItemIndex
-        this.selectedItem = this.itemList[this.selectedItemIndex]
+        this.state = {
+            value: this.itemList[this.state.selectedItemIndex],
+            valueIndex: props.selectedItemIndex
+        }
         this.ref_radiocomp = React.createRef()
     }
 
-    handleClickCheckButton(element) {
+    handleClickCheckButton(element, index) {
         const checkBoxes = this.ref_radiocomp.current.getElementsByClassName('checkbox-container')
         for (const checkBox of checkBoxes) {
             checkBox.classList.remove('checked')
         }
+        this.state.value = element.state.value
+        this.state.valueIndex = index
         element.classList.add('checked')
     }
 
     render() {
         return (
             <div className='radiocomp' ref={this.ref_radiocomp}>
-                {this.itemList.map((x,index) => (<CheckButton key={index} onClick={(element)=>this.handleClickCheckButton(element)} title={x}></CheckButton>))}
+                {this.itemList.map((x,index) => (<CheckButton key={index} onClick={(element, index)=>this.handleClickCheckButton(element)} title={x}></CheckButton>))}
             </div>
         )
     }

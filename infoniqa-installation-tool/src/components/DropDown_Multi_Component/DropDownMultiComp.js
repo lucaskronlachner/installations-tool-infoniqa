@@ -11,7 +11,7 @@ class DropDownComp extends React.Component {
         this.state = {
             _list: (props.list == null) ? [] : props.list,
             _selected: (props.selected == null) ? "Select..." : props.selected,
-            _selectedList: []
+            value: []
         }
     }
     componentDidMount() {
@@ -25,18 +25,18 @@ class DropDownComp extends React.Component {
             let dropdown_items = element.getElementsByTagName("li")
             for (const item of dropdown_items) {
                 item.onclick = () => {
-                    if(this.state._selectedList.includes(item.innerText)){
+                    if(this.state.value.includes(item.innerText)){
                         item.classList.remove('selected')
-                        const index = this.state._selectedList.indexOf(item.innerText);
+                        const index = this.state.value.indexOf(item.innerText);
                         if (index > -1) {
-                            this.state._selectedList.splice(index, 1); // 2nd parameter means remove one item only
+                            this.state.value.splice(index, 1); // 2nd parameter means remove one item only
                         }
-                        element.getElementsByClassName('dropdown-header-value-text')[0].innerHTML = this.state._selectedList.join(', ').length <= 0 ? 'Select...' : this.state._selectedList.join(', ')
+                        element.getElementsByClassName('dropdown-header-value-text')[0].innerHTML = this.state.value.join(', ').length <= 0 ? 'Select...' : this.state.value.join(', ')
                     }else{
-                        this.state._selectedList.push(item.innerText)
-                        element.getElementsByClassName('dropdown-header-value-text')[0].innerHTML = this.state._selectedList.join(', ').length <= 0 ? 'Select...' : this.state._selectedList.join(', ')
+                        this.state.value.push(item.innerText)
+                        element.getElementsByClassName('dropdown-header-value-text')[0].innerHTML = this.state.value.join(', ').length <= 0 ? 'Select...' : this.state.value.join(', ')
                         for (const listItem of this.dropdownList.current.getElementsByTagName('li')) {
-                            if(this.state._selectedList.includes(listItem.innerText)){
+                            if(this.state.value.includes(listItem.innerText)){
                                 listItem.classList.add('selected')
                             }else{
                                 listItem.classList.remove('selected')
