@@ -22,13 +22,7 @@ class DropDownComp extends React.Component {
             for (const item of dropdown_items) {
                 item.onclick = () => {
                     element.getElementsByClassName('dropdown-header-value-text')[0].innerHTML = item.innerText;
-<<<<<<< HEAD
                     this.state.value = item.innerText
-=======
-                    this.setState({
-                        selected: item.innerText
-                    })
->>>>>>> 63457b208675f3799fb7c369774564ae63e38c50
                 }
             }
         }

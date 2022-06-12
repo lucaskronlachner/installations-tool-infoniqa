@@ -1,4 +1,5 @@
 import React from 'react'
+import { SliderComp } from '../modules'
 import TextInputField from '../Text_Input/TextInputComp'
 import './ColorPickerStyle.css'
 
@@ -89,7 +90,7 @@ class ColorPickerComp extends React.Component {
 
                     let hue = deg;
                     let saturation = r / radiusPicker;
-                    let value = 1.0;
+                    let value = 1
 
                     let [red, green, blue] = hsv2rgb(hue, saturation, value);
                     let alpha = 255;
@@ -252,7 +253,8 @@ class ColorPickerComp extends React.Component {
                                     <input type='number' ref={this.inputB} className='b-input' max={255}></input>
                                 </div>
                             </div>
-                            <TextInputField ref={this.hexInputField} title='#hex'></TextInputField>
+                            <SliderComp value='100'></SliderComp>
+                            <TextInputField onChange='' ref={this.hexInputField} title='#hex'></TextInputField>
                         </div>
                     </div>
                 </div>
@@ -264,6 +266,46 @@ class ColorPickerComp extends React.Component {
                 </div>
             </div>
         )
+    }
+    drawCircle() {
+        let pickerCanvas = this.colorPickerCanvas.current
+        let radiusPicker = pickerCanvas.height / 2
+        let image = ctx.createImageData(2 * radiusPicker, 2 * radiusPicker);
+        let data = image.data;
+
+        for (let x = -radiusPicker; x < radiusPicker; x++) {
+            for (let y = -radiusPicker; y < radiusPicker; y++) {
+                let [r, phi] = xy2polar(x, y);
+
+                if (r > radiusPicker + 3) {
+                    // skip all (x,y) coordinates that are outside of the circle
+                    continue;
+                }
+
+                let deg = rad2deg(phi);
+
+                // Figure out the starting index of this pixel in the image data array.
+                let rowLength = 2 * radiusPicker;
+                let adjustedX = x + radiusPicker; // convert x from [-50, 50] to [0, 100] (the coordinates of the image data array)
+                let adjustedY = y + radiusPicker; // convert y from [-50, 50] to [0, 100] (the coordinates of the image data array)
+                let pixelWidth = 4; // each pixel requires 4 slots in the data array
+                let index = (adjustedX + adjustedY * rowLength) * pixelWidth;
+
+                let hue = deg;
+                let saturation = r / radiusPicker;
+                let value = 1
+
+                let [red, green, blue] = hsv2rgb(hue, saturation, value);
+                let alpha = 255;
+
+                data[index] = red;
+                data[index + 1] = green;
+                data[index + 2] = blue;
+                data[index + 3] = alpha;
+            }
+        }
+
+        ctx.putImageData(image, 0, 0);
     }
 }
 
