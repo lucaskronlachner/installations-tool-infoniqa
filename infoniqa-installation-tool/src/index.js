@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { Checkbox, SectionComp, SectionItemComp, FileUploadComp, DropDownComp, ColorPickerComp, TextInputField, SwitchComp, DatePickerComp, RadioComp, Button, DropDownMutliComp, DropDownInputComp, SliderComp} from './components/modules';
 import ConverterComp from './Backend/Converter/convertJsonJS.js';
+import TxtConverter from './Backend/Converter/convertTXTJS';
 import reportWebVitals from './reportWebVitals';
 
 
@@ -53,7 +54,8 @@ ReactDOM.render(
             <Button buttonStyle="btn--default--disabled" handleClick={() => console.log("you clicked me")}>Button</Button>
         </SectionItemComp>
     </SectionComp> */}
-    <ConverterComp file_url_json={'template_site.json'}></ConverterComp>
+    {/*<ConverterComp file_url_json={'template_site.json'}></ConverterComp>*/}
+    <TxtConverter template_src={''} ></TxtConverter>
 
   </React.StrictMode>,
 
