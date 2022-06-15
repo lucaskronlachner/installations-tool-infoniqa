@@ -11,8 +11,8 @@ class RadioComp extends React.Component {
         super(props)
         this.itemList = props.itemList
         this.state = {
-            value: this.itemList[this.state.selectedItemIndex],
-            valueIndex: props.selectedItemIndex
+            valueIndex: props.selectedItemIndex,
+            value: (this.valueIndex !== undefined) ? this.itemList[this.valueIndex] : null
         }
         this.ref_radiocomp = React.createRef()
     }
