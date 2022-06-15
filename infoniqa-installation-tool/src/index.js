@@ -9,8 +9,6 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-      <DropDownInputComp list={['tee', 'too']}></DropDownInputComp>
-      <ColorPickerComp> </ColorPickerComp>
     {/* <SectionComp sectionHeader='Section Header 1'>
         <SectionItemComp header='File upload 1' info='upload your file here if you want lol'>
             <FileUploadComp></FileUploadComp>
