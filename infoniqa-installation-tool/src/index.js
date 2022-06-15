@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { Checkbox, SectionComp, SectionItemComp, FileUploadComp, DropDownComp, ColorPickerComp, TextInputField, SwitchComp, DatePickerComp, RadioComp, Button, DropDownMutliComp, DropDownInputComp} from './components/modules';
 import ConverterComp from './Backend/Converter/convertJsonJS.js';
-import TxtConverter from './Backend/Converter/convertTXTJS';
+import PageContainer from './Backend/Converter/convertTXTJS';
 import reportWebVitals from './reportWebVitals';
 
 
@@ -54,7 +54,7 @@ ReactDOM.render(
         </SectionItemComp>
     </SectionComp> */}
     {/*<ConverterComp file_url_json={'template_site.json'}></ConverterComp>*/}
-    <TxtConverter template_src={} ></TxtConverter>
+    <PageContainer tmplt_src={"/cfg_user_info.txt"} ></PageContainer>
 
   </React.StrictMode>,
 
