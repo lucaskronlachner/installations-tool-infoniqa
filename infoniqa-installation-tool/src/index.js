@@ -3,14 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { Checkbox, SectionComp, SectionItemComp, FileUploadComp, DropDownComp, ColorPickerComp, TextInputField, SwitchComp, DatePickerComp, RadioComp, Button, DropDownMutliComp, DropDownInputComp, SliderComp} from './components/modules';
 import ConverterComp from './Backend/Converter/convertJsonJS.js';
-import TxtConverter from './Backend/Converter/convertTXTJS';
+import PageContainer from './Backend/Converter/convertTXTJS';
 import reportWebVitals from './reportWebVitals';
 
 
 ReactDOM.render(
   <React.StrictMode>
-      <DropDownInputComp list={['tee', 'too']}></DropDownInputComp>
-      <ColorPickerComp> </ColorPickerComp>
     {/* <SectionComp sectionHeader='Section Header 1'>
         <SectionItemComp header='File upload 1' info='upload your file here if you want lol'>
             <FileUploadComp></FileUploadComp>
@@ -55,7 +53,7 @@ ReactDOM.render(
         </SectionItemComp>
     </SectionComp> */}
     {/*<ConverterComp file_url_json={'template_site.json'}></ConverterComp>*/}
-
+    <PageContainer tmplt_src={"/cfg_user_info.txt"} ></PageContainer>
   </React.StrictMode>,
 
   document.getElementById('root')
